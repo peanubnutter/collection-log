@@ -39,6 +39,14 @@ public class CollectionLogDeserializer implements JsonDeserializer<CollectionLog
 
                 for (JsonElement item : page.get(COLLECTION_LOG_ITEMS_KEY).getAsJsonArray()) {
                     CollectionLogItem newItem = context.deserialize(item, CollectionLogItem.class);
+
+                    // Uncomment to update LogItemInfo list
+                    // Example: (Farmer's shirt,13643)
+//                    LogItemInfo logItemInfo = LogItemInfo.findByName(newItem.getName());
+//                    if (logItemInfo == null) {
+//                        System.out.println("New collection log item detected!:(" + newItem.getName() + "," + newItem.getId() + ")");
+//                    }
+
                     newItems.add(newItem);
                 }
 

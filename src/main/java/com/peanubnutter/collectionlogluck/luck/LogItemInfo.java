@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-// All 1477 collection log items as of 9/21/2023 and a mapping to their item IDs and drop mechanics / probabilities.
+// All 1488 collection log items as of 11/26/2023 and a mapping to their item IDs and drop mechanics / probabilities.
 public class LogItemInfo {
 
     /*
@@ -2140,7 +2140,7 @@ public class LogItemInfo {
     public static LogItemInfo JUNGLE_DEMON_MASK_20032 = new LogItemInfo("Jungle demon mask", 20032,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 851, 6)));
     public static LogItemInfo JUSTICIAR_CHESTGUARD_22327 = new LogItemInfo("Justiciar chestguard", 22327,
-                        new PoissonBinomialDrop(ImmutableList.of(
+            new PoissonBinomialDrop(ImmutableList.of(
                     new RollInfo(LogItemSourceInfo.THEATRE_OF_BLOOD_COMPLETIONS, 1.0 / 86.45),
                     new RollInfo(LogItemSourceInfo.THEATRE_OF_BLOOD_HARD_COMPLETIONS, 1.0 / 69.3)
             ))
@@ -2148,7 +2148,7 @@ public class LogItemInfo {
                     .withConfigOption(CollectionLogLuckConfig.AVG_PERSONAL_TOB_HM_POINTS_KEY)
     );
     public static LogItemInfo JUSTICIAR_FACEGUARD_22326 = new LogItemInfo("Justiciar faceguard", 22326,
-                        new PoissonBinomialDrop(ImmutableList.of(
+            new PoissonBinomialDrop(ImmutableList.of(
                     new RollInfo(LogItemSourceInfo.THEATRE_OF_BLOOD_COMPLETIONS, 1.0 / 86.45),
                     new RollInfo(LogItemSourceInfo.THEATRE_OF_BLOOD_HARD_COMPLETIONS, 1.0 / 69.3)
             ))
@@ -3288,7 +3288,7 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.ZULRAH_KILLS, 1.0 / 13106, 2)));
     public static LogItemInfo TAN_CAVALIER_2639 = new LogItemInfo("Tan cavalier", 2639,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 1625, 5)));
-   public static LogItemInfo TARNISHED_LOCKET_26910 = new LogItemInfo("Tarnished locket", 26910,
+    public static LogItemInfo TARNISHED_LOCKET_26910 = new LogItemInfo("Tarnished locket", 26910,
             // Assumes the player opens their intricate pouches
             new BinomialDrop(new RollInfo(LogItemSourceInfo.RIFTS_SEARCHES, 1.0 / 25.0 / 40)));
     public static LogItemInfo TEACHER_WAND_6912 = new LogItemInfo("Teacher wand", 6912,
@@ -3904,6 +3904,30 @@ public class LogItemInfo {
             ))
                     .withConfigOption(CollectionLogLuckConfig.AVG_VETION_REWARDS_FRACTION_KEY));
     public static LogItemInfo WARPED_SCEPTRE_UNCHARGED_28583 = new LogItemInfo("Warped sceptre (uncharged)", 28583,
+            new MissingKillCountDrop());
+    public static LogItemInfo FARMERS_SHIRT_13643 = new LogItemInfo("Farmer's shirt", 13643,
+            new DeterministicDrop());
+    public static LogItemInfo FOX_WHISTLE_28626 = new LogItemInfo("Fox whistle", 28626,
+            new MissingKillCountDrop());
+    public static LogItemInfo GOLDEN_PHEASANT_EGG_28663 = new LogItemInfo("Golden pheasant egg", 28663,
+            new MissingKillCountDrop());
+    public static LogItemInfo TWITCHERS_GLOVES_28630 = new LogItemInfo("Twitcher's gloves", 28630,
+            new DeterministicDrop());
+    public static LogItemInfo CAPE_POUCH_28613 = new LogItemInfo("Cape pouch", 28613,
+            new DeterministicDrop());
+    public static LogItemInfo FELLING_AXE_HANDLE_28177 = new LogItemInfo("Felling axe handle", 28177,
+            new DeterministicDrop());
+    public static LogItemInfo PHEASANT_HAT_28620 = new LogItemInfo("Pheasant hat", 28620,
+            new DeterministicDrop());
+    public static LogItemInfo PHEASANT_LEGS_28622 = new LogItemInfo("Pheasant legs", 28622,
+            new DeterministicDrop());
+    public static LogItemInfo PHEASANT_BOOTS_28618 = new LogItemInfo("Pheasant boots", 28618,
+            new DeterministicDrop());
+    public static LogItemInfo PHEASANT_CAPE_28616 = new LogItemInfo("Pheasant cape", 28616,
+            new DeterministicDrop());
+    public static LogItemInfo PETAL_GARLAND_28655 = new LogItemInfo("Petal garland", 28655,
+            new MissingKillCountDrop());
+    public static LogItemInfo STURDY_BEEHIVE_PARTS_28674 = new LogItemInfo("Sturdy beehive parts", 28674,
             new MissingKillCountDrop());
 
     private final String itemName;
