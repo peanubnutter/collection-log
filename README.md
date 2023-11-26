@@ -6,18 +6,10 @@ A [Runelite](https://github.com/runelite/runelite) plugin that calculates luck f
 ## Features
 * Share your luck stats with other players or view other players' luck using a chat command.
 * Click "Check" on supported items in the collection log to calculate your luck.
+* Configurable assumptions for certain drops for more accurate calculations.
 * Coming soon: Per-boss and account-wide luck calculation
 
-## Troubleshooting
-
-The first time loading your own (or someone else's) collection log, there may be a slight delay. Reliability of this
-plugin depends upon the reliability of collectionlog.net. This plugin will not re-download your or someone else's 
-collection log until you re-log.
-
-If the plugin still displays out of date data after re-logging, consider re-uploading your collection log to
-collectionlog.net using the separate Collection Log Plugin.
-
-### Commands
+## Commands
 Type `!luck` followed by an item name. Alternatively, click "Check" on any item icon in the collection log pane to 
 show your luck stats for that item.
 
@@ -37,7 +29,16 @@ Examples:
 
 In the future, luck for an entire page or your entire account can be shared rather than single items.
 
-### Luck Configuration
+## Troubleshooting
+
+The first time loading your own (or someone else's) collection log, there may be a slight delay. Reliability of this
+plugin depends upon the reliability of collectionlog.net. This plugin will not re-download your or someone else's
+collection log until you re-log.
+
+If the plugin still displays out of date data after re-logging, consider re-uploading your collection log to
+collectionlog.net using the separate Collection Log Plugin.
+
+## Luck Configuration
 
 Displaying your own luck can be disabled in the plugin configuration.
 
