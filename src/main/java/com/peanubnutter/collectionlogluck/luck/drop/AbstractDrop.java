@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 // Describes the probability distribution for a drop
 public abstract class AbstractDrop implements DropLuck {
 
+    public static final String INCALCULABLE_MISSING_CONFIG = "Luck calculation for this drop is only available for your own character.";
+
     protected final List<RollInfo> rollInfos;
 
     protected List<String> configOptions;
@@ -61,7 +63,7 @@ public abstract class AbstractDrop implements DropLuck {
     public String getIncalculableReason(CollectionLogItem item, CollectionLogLuckConfig config) {
         // This drop needs custom behavior defined in client configs, but these are only available client-side.
         if (config == null && !configOptions.isEmpty()) {
-            return "Luck calculation for this drop is only available for your own character.";
+            return INCALCULABLE_MISSING_CONFIG;
         }
         if (configOptions.contains(CollectionLogLuckConfig.BARROWS_BOLT_RACKS_ENABLED_KEY)
                 && !config.barrowsBoltRacksEnabled()

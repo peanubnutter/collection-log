@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.inject.Provides;
 import com.peanubnutter.collectionlogluck.luck.CollectionLogItemAliases;
 import com.peanubnutter.collectionlogluck.luck.LogItemInfo;
+import com.peanubnutter.collectionlogluck.luck.drop.AbstractDrop;
 import com.peanubnutter.collectionlogluck.model.CollectionLog;
 import com.peanubnutter.collectionlogluck.model.CollectionLogItem;
 import com.peanubnutter.collectionlogluck.model.CollectionLogPage;
@@ -36,8 +37,10 @@ import javax.inject.Inject;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -346,16 +349,30 @@ public class CollectionLogLuckPlugin extends Plugin {
             // This likely only happens if there is an update and the plugin does not yet support new items.
             return "Item " + itemName + " is not yet supported for luck calculation.";
         }
+
+        String warningText = "";
+
+        CollectionLogLuckConfig relevantConfig = config;
+        if (!collectionLogIsLocalPlayer) {
+            relevantConfig = null;
+        }
+
         // all other unimplemented or unsupported drops take this path
-        // TODO: don't support drops with assumptions for other players
-        String failReason = logItemInfo.getDropProbabilityDistribution().getIncalculableReason(item, config);
+        String failReason = logItemInfo.getDropProbabilityDistribution().getIncalculableReason(item, relevantConfig);
         if (failReason != null) {
-            return failReason;
+            if (failReason.equals(AbstractDrop.INCALCULABLE_MISSING_CONFIG)) {
+                // drops from other players will use YOUR config, which can lead to very inaccurate luck calculation!!
+                // proceed with calculation but warn about likely inaccuracy
+                warningText = " - Warning: Calculation uses YOUR config settings. May be inaccurate.";
+            } else {
+                return failReason;
+            }
         }
 
         // make sure this item's icon is loaded
         loadItemIcons(ImmutableList.of(item));
 
+        // calculate using player's config, even if the calculation is for another player
         double luck = logItemInfo.getDropProbabilityDistribution().calculateLuck(item, collectionLog, config);
         double dryness = logItemInfo.getDropProbabilityDistribution().calculateDryness(item, collectionLog, config);
         if (luck < 0 || luck > 1 || dryness < 0 || dryness > 1) {
@@ -376,12 +393,14 @@ public class CollectionLogLuckPlugin extends Plugin {
         int numObtained = item.getQuantity();
         String kcDescription = logItemInfo.getDropProbabilityDistribution().getKillCountDescription(collectionLog);
 
-        String warningText = "";
         // rarer than 1 in 100M is likely an error. Note: 0 luck or 0 dryness is normal as a result of low KC and does
         // not need a warning.
         if (luck > 0.99999999 || dryness > 0.99999999) {
-            warningText = " - Warning: Check plugin configuration. Did you have many KC" +
-                    " before the log existed, or have you reached the max # tracked for this item?";
+            // previous warnings supersede this warning
+            if (warningText.isEmpty()) {
+                warningText = " - Warning: Check plugin configuration. Did you have many KC" +
+                        " before the log existed, or have you reached the max # tracked for this item?";
+            }
         }
 
         // This reports detailed luck stats (luck + dryness) rather than a simplified average. We should do a user study
