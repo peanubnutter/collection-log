@@ -3,28 +3,6 @@ package com.evansloan.collectionlog;
 import com.evansloan.collectionlog.ui.ExpandablePanel;
 import com.evansloan.collectionlog.ui.GameStatePanel;
 import com.evansloan.collectionlog.ui.Icon;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.EnumSet;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.basic.BasicButtonUI;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
@@ -43,6 +21,16 @@ import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.LinkBrowser;
 import net.runelite.client.util.SwingUtil;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicButtonUI;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.EnumSet;
+
 @Slf4j
 public class CollectionLogPanel extends PluginPanel
 {
@@ -50,8 +38,9 @@ public class CollectionLogPanel extends PluginPanel
 	private static final ImageIcon DISCORD_ICON;
 	private static final ImageIcon GITHUB_ICON;
 	private static final ImageIcon HELP_ICON;
-	private static final ImageIcon RANDOM_ICON;
 	private static final ImageIcon INFO_ICON;
+	private static final ImageIcon LUCK_ICON;
+	private static final ImageIcon RANDOM_ICON;
 	private static final ImageIcon WEBSITE_ICON;
 	private static final EmptyBorder DEFAULT_BORDER = new EmptyBorder(10, 10, 10, 10);
 
@@ -61,8 +50,9 @@ public class CollectionLogPanel extends PluginPanel
 		DISCORD_ICON = Icon.DISCORD.getIcon(img -> ImageUtil.resizeImage(img, 16, 16));
 		GITHUB_ICON = Icon.GITHUB.getIcon(img -> ImageUtil.resizeImage(img, 16, 16));
 		HELP_ICON = Icon.HELP.getIcon(img -> ImageUtil.resizeImage(img, 20, 20));
-		RANDOM_ICON = Icon.RANDOM.getIcon(img -> ImageUtil.resizeImage(img, 20, 20));
 		INFO_ICON = Icon.INFO.getIcon(img -> ImageUtil.resizeImage(img, 20, 20));
+		LUCK_ICON = Icon.LUCK.getIcon(img -> ImageUtil.resizeImage(img, 20, 20));
+		RANDOM_ICON = Icon.RANDOM.getIcon(img -> ImageUtil.resizeImage(img, 20, 20));
 		WEBSITE_ICON = Icon.COLLECTION_LOG.getIcon(img -> ImageUtil.resizeImage(img, 16, 16));
 	}
 
@@ -176,7 +166,7 @@ public class CollectionLogPanel extends PluginPanel
 		JPanel activeTabPanel = new JPanel();
 		activeTabPanel.setLayout(new BoxLayout(activeTabPanel, BoxLayout.Y_AXIS));
 		MaterialTabGroup tabGroup = new MaterialTabGroup(activeTabPanel);
-		tabGroup.setLayout(new GridLayout(1, 4, 10, 10));
+		tabGroup.setLayout(new GridLayout(1, 5, 10, 10));
 		tabGroup.setBorder(new EmptyBorder(0, 0, 10, 0));
 		tabPanel.add(tabGroup);
 		tabPanel.add(activeTabPanel);
@@ -190,6 +180,9 @@ public class CollectionLogPanel extends PluginPanel
 
 		JPanel randomPanel = createRandomPanel();
 		createTab(RANDOM_ICON, "Random", tabGroup, randomPanel);
+
+		JPanel luckPanel = createLuckPanel();
+		createTab(LUCK_ICON, "Luck", tabGroup, luckPanel);
 
 		JPanel helpPanel = createHelpPanel();
 		createTab(HELP_ICON, "Help", tabGroup, helpPanel);
@@ -216,6 +209,7 @@ public class CollectionLogPanel extends PluginPanel
 		pluginInfoPanel.add(clnEnabledLabel);
 
 		JPanel changeLogContent = createTabContentPanel();
+		// TODO: luck calculation update text
 		String changeLogText = "v" + CollectionLogConfig.PLUGIN_VERSION + "\n\n" +
 			"* Added random collection log item button in sidebar\n" +
 			"* Fixed inconsistent page name highlighting";
@@ -468,6 +462,71 @@ public class CollectionLogPanel extends PluginPanel
 
 		return buttonPanel;
 	}
+
+	private JPanel createLuckPanel()
+	{
+		JPanel luckPanel = new JPanel();
+		luckPanel.setLayout(new BoxLayout(luckPanel, BoxLayout.Y_AXIS));
+
+		// TODO: consider a settings panel here rather than in the plugin config...
+
+		JPanel luckiestItemsPanel = createLuckItemsPanel(true, 5);
+		luckPanel.add(luckiestItemsPanel);
+
+		JPanel driestItemsPanel = createLuckItemsPanel(false, 5);
+		luckPanel.add(driestItemsPanel);
+
+		return luckPanel;
+	}
+
+	private JPanel createLuckItemsPanel(boolean sortDescendingByLuck, int topN)
+	{
+		JPanel luckItemsPanel = new JPanel(new GridLayout(4, 1));
+		luckItemsPanel.setBorder(new EmptyBorder(0, 0, 10, 0));
+
+		String sortText = "luckiest";
+		if (!sortDescendingByLuck) {
+			sortText = "driest";
+		}
+
+		JLabel titleLabel = createTitleLabel("Top " + topN + " " + sortText + " items");
+		titleLabel.setVerticalAlignment(SwingConstants.CENTER);
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		luckItemsPanel.add(titleLabel);
+
+		// Used to report error messages if needed. Otherwise blank.
+		JLabel errorLabel = createTitleLabel("");
+		errorLabel.setVerticalAlignment(SwingConstants.CENTER);
+		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JButton calculateLuckButton = createButton(
+				"Calculate",
+				(event) -> clientThread.invokeLater(() -> {
+					CollectionLogItem item = collectionLogManager.getRandomItem();
+					if (item == null)
+					{
+						errorLabel.setText("Open Collection Log first");
+						return;
+					}
+					AsyncBufferedImage itemImage = itemManager.getImage(item.getId(), 1, false);
+					itemImage.addTo(randomItemSprite);
+					randomItemLabel.setText(item.getName());
+				})
+		);
+		luckItemsPanel.add(calculateLuckButton);
+		luckItemsPanel.add(errorLabel);
+
+		randomItemSprite = new JLabel();
+		randomItemSprite.setVerticalAlignment(SwingConstants.CENTER);
+		randomItemSprite.setHorizontalAlignment(SwingConstants.CENTER);
+		randomItemSprite.setMinimumSize(new Dimension(36, 36));
+		randomItemSprite.setPreferredSize(new Dimension(36, 36));
+		randomItemSprite.setBorder(new LineBorder(Color.BLACK, 1));
+		luckItemsPanel.add(randomItemSprite);
+
+		return luckItemsPanel;
+	}
+
 
 	private JTextArea createTextArea(String text)
 	{

@@ -28,11 +28,12 @@
 package com.evansloan.collectionlog.ui;
 
 import com.evansloan.collectionlog.CollectionLogPlugin;
+import net.runelite.client.util.ImageUtil;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.util.function.UnaryOperator;
-import javax.annotation.Nonnull;
-import javax.swing.ImageIcon;
-import net.runelite.client.util.ImageUtil;
 
 public enum Icon
 {
@@ -42,6 +43,7 @@ public enum Icon
 	DISCORD("/discord.png"),
 	GITHUB("/github.png"),
 	HELP("/help.png"),
+	LUCK("/luck.png"),
 	RANDOM("/random.png"),
 	INFO("/info.png"),
 	;
