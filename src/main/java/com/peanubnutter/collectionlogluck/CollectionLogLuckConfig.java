@@ -45,7 +45,7 @@ public interface CollectionLogLuckConfig extends Config
 	)
 	String appearanceSection = "appearance";
 
-	// Other players' luck will always show, for example though the !log command, but the player may want to hide
+	// Other players' luck will always show, for example though the !luck command, but the player may want to hide
 	// their own luck because it could be unpleasant to see.
 	@ConfigItem(
 			keyName = "hide_personal_luck_calculation",
