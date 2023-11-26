@@ -36,10 +36,8 @@ import javax.inject.Inject;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -173,9 +171,13 @@ public class CollectionLogLuckPlugin extends Plugin {
 
     private String getChatMessageSenderUsername(ChatMessage chatMessage) {
         if (chatMessage.getType().equals(ChatMessageType.PRIVATECHATOUT)) {
-            return client.getLocalPlayer().getName();
+            String username = client.getLocalPlayer().getName();
+            if (username != null) {
+                return Text.sanitize(username);
+            }
+            return "";
         }
-        return chatMessage.getName();
+        return Text.sanitize(chatMessage.getName());
     }
 
     /**
@@ -190,16 +192,18 @@ public class CollectionLogLuckPlugin extends Plugin {
         fetchCollectionLogAndRunAsync(username, collectionLog -> replaceCommandMessage(chatMessage, message, collectionLog));
     }
 
-    private void fetchCollectionLogAndRunAsync(String username, Consumer<CollectionLog> callback) {
+    private void fetchCollectionLogAndRunAsync(String rawUsername, Consumer<CollectionLog> callback) {
+        final String sanitizedUsername = Text.sanitize(rawUsername);
+
         // Only fetch collection log if necessary
-        if (loadedCollectionLogs.containsKey(username)) {
-            CollectionLog collectionLog = loadedCollectionLogs.get(username);
+        if (loadedCollectionLogs.containsKey(sanitizedUsername)) {
+            CollectionLog collectionLog = loadedCollectionLogs.get(sanitizedUsername);
             clientThread.invoke(() -> callback.accept(collectionLog));
             return;
         }
 
         try {
-            apiClient.getCollectionLog(Text.sanitize(username), new Callback() {
+            apiClient.getCollectionLog(sanitizedUsername, new Callback() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
                     log.error("Unable to resolve !log command: " + e.getMessage());
@@ -221,7 +225,7 @@ public class CollectionLogLuckPlugin extends Plugin {
                             CollectionLog.class,
                             new CollectionLogDeserializer()
                     );
-                    loadedCollectionLogs.put(username, collectionLog);
+                    loadedCollectionLogs.put(sanitizedUsername, collectionLog);
                     clientThread.invoke(() -> callback.accept(collectionLog));
                 }
             });
@@ -307,8 +311,10 @@ public class CollectionLogLuckPlugin extends Plugin {
      * @return Replacement message
      */
     private String buildLuckCommandMessage(CollectionLog collectionLog, String commandTarget) {
-        // TODO: detect whether collectionLog is the current player's collection log AND they want to hide luck
-        if (config.hidePersonalLuckCalculation()) {
+        boolean collectionLogIsLocalPlayer =
+                client.getLocalPlayer().getName().equalsIgnoreCase(collectionLog.getUsername());
+
+        if (collectionLogIsLocalPlayer && config.hidePersonalLuckCalculation()) {
             // This should make it obvious that 1) The player can go to the config to change this setting, and 2) other
             // players can still see their luck if they type in a !log luck command.
             return "Your luck is set to be hidden from you in the plugin config.";

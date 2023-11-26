@@ -50,7 +50,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = "hide_personal_luck_calculation",
 			name = "Hide personal luck",
-			description = "Disable the display of your own luck calculations",
+			description = "Hide your luck stats from yourself. Others can still see your chat commands.",
 			position = 1,
 			section = appearanceSection
 	)
