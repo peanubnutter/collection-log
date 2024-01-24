@@ -4,15 +4,15 @@ import com.google.common.collect.ImmutableList;
 import com.peanubnutter.collectionlogluck.CollectionLogLuckConfig;
 import com.peanubnutter.collectionlogluck.luck.drop.*;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 
 // All 1488 collection log items as of 11/26/2023 and a mapping to their item IDs and drop mechanics / probabilities.
 public class LogItemInfo {
+
+    // case-insensitive map, just in case
+    private static final Map<String, LogItemInfo> logItemInfos = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
     /*
      Example of each supported probability distribution type:
@@ -3934,42 +3934,23 @@ public class LogItemInfo {
     private final int itemId;
     private final DropLuck dropLuck;
 
-    LogItemInfo(String itemName, int itemId, DropLuck dropLuck) {
+    // Initializing static map here - don't allow other classes to initialize.
+    private LogItemInfo(String itemName, int itemId, DropLuck dropLuck) {
         this.itemName = itemName;
         this.itemId = itemId;
         this.dropLuck = dropLuck;
         dropLuck.setItemName(itemName);
+
+        logItemInfos.put(itemName, this);
     }
 
     // find the LogItemInfo corresponding to the given target
     public static LogItemInfo findByName(String targetItemName) {
-        // Use some hacky reflective code since modeling this class as an enum runs into "code too large" error
-        return getAllLogItemInfos()
-                .stream()
-                // at this point we finally have a LogItemInfo object
-                .filter(field -> field.getItemName().equalsIgnoreCase(targetItemName))
-                .findFirst()
-                .orElse(null);
+        return logItemInfos.get(targetItemName);
     }
 
-    public static List<LogItemInfo> getAllLogItemInfos() {
-        // Use some hacky reflective code since modeling this class as an enum runs into "code too large" error
-        return Arrays.stream(LogItemInfo.class.getDeclaredFields())
-                .filter(field -> Modifier.isStatic(field.getModifiers()))
-                .map(LogItemInfo::retrieveStaticField)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.toList());
-    }
-
-    // find the constant in this class corresponding to the Field
-    private static Optional<LogItemInfo> retrieveStaticField(Field field) {
-        try {
-            // field is static, so "null" parameter is ignored
-            return Optional.of((LogItemInfo) field.get(null));
-        } catch (IllegalAccessException e) {
-            return Optional.empty();
-        }
+    public static Collection<LogItemInfo> getAllLogItemInfos() {
+        return logItemInfos.values();
     }
 
     public String getItemName() {
