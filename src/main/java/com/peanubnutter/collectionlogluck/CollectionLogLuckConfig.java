@@ -37,7 +37,7 @@ public interface CollectionLogLuckConfig extends Config
 	String KBD_KC_PRE_D_PICK_BUFF_KEY = "kbd_kc_pre_d_pick_buff";
 
 	// Used in GET request to collectionlog.net. Should be up-to-date with collection log plugin updates.
-	String COLLECTION_LOG_VERSION = "3.1.0";
+	String COLLECTION_LOG_VERSION = "3.1.2";
 
 	@ConfigSection(
 		name = "Appearance",
