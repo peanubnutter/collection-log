@@ -3,6 +3,7 @@ package com.peanubnutter.collectionlogluck.luck;
 import com.google.common.collect.ImmutableList;
 import com.peanubnutter.collectionlogluck.CollectionLogLuckConfig;
 import com.peanubnutter.collectionlogluck.luck.drop.*;
+import net.runelite.api.ItemID;
 
 import java.util.Collection;
 import java.util.Map;
@@ -3054,6 +3055,14 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.SCORPIA_KILLS, 1.0 / 2016)));
     public static LogItemInfo SCRIBBLED_NOTE_21664 = new LogItemInfo("Scribbled note", 21664,
             new MissingKillCountDrop());
+    public static LogItemInfo SCURRY_28801 = new LogItemInfo("Scurry", ItemID.SCURRY,
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.SCURRIUS_KILLS, 1.0 / 3000))
+                    .withConfigOption(CollectionLogLuckConfig.AVG_SCURRIUS_MVP_RATE_KEY)
+    );
+    public static LogItemInfo SCURRIUS_SPINE_28798 = new LogItemInfo("Scurrius' spine", ItemID.SCURRIUS_SPINE,
+            // Scurrius' spine not affected by MVP rate
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.SCURRIUS_KILLS, 1.0 / 33))
+    );
     public static LogItemInfo SCYTHE_OF_VITUR_UNCHARGED_22486 = new LogItemInfo("Scythe of vitur (uncharged)", 22486,
             new PoissonBinomialDrop(ImmutableList.of(
                     new RollInfo(LogItemSourceInfo.THEATRE_OF_BLOOD_COMPLETIONS, 1.0 / 172.9),

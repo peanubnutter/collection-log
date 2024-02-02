@@ -253,6 +253,12 @@ public abstract class AbstractDrop implements DropLuck {
         ) {
             dropChance *= clampContribution(config.avgVetionRewardsFraction());
         }
+        else if (
+                rollInfo.getDropSource().equals(LogItemSourceInfo.SCURRIUS_KILLS)
+                        && configOptions.contains(CollectionLogLuckConfig.AVG_SCURRIUS_MVP_RATE_KEY)
+        ) {
+            dropChance *= clampContribution(config.avgScurriusMvpRate());
+        }
 
         return dropChance;
     }

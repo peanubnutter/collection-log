@@ -56,7 +56,7 @@ public class CollectionLogLuckPlugin extends Plugin {
 
     private static final Pattern COLLECTION_LOG_LUCK_CHECK_REGEX = Pattern.compile("^You have received (.*) x (.*)\\.$");
     private static final String COLLECTION_LOG_LUCK_COMMAND_STRING = "!luck";
-    private static final Pattern COLLECTION_LOG_COMMAND_PATTERN = Pattern.compile("!luck\\s*(.+)\\s*", Pattern.CASE_INSENSITIVE);
+    private static final Pattern COLLECTION_LOG_LUCK_COMMAND_PATTERN = Pattern.compile("!luck\\s*(.+)\\s*", Pattern.CASE_INSENSITIVE);
 
     private Map<Integer, Integer> loadedCollectionLogIcons;
 
@@ -239,7 +239,7 @@ public class CollectionLogLuckPlugin extends Plugin {
     }
 
     private void replaceCommandMessage(ChatMessage chatMessage, String message, CollectionLog collectionLog) {
-        Matcher commandMatcher = COLLECTION_LOG_COMMAND_PATTERN.matcher(message);
+        Matcher commandMatcher = COLLECTION_LOG_LUCK_COMMAND_PATTERN.matcher(message);
         if (!commandMatcher.matches()) {
             return;
         }

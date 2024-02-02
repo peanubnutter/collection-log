@@ -29,6 +29,7 @@ public interface CollectionLogLuckConfig extends Config
 	String AVG_CALLISTO_REWARDS_FRACTION_KEY = "avg_callisto_rewards_fraction";
 	String AVG_VENENATIS_REWARDS_FRACTION_KEY = "avg_venenatis_rewards_fraction";
 	String AVG_VETION_REWARDS_FRACTION_KEY = "avg_vetion_rewards_fraction";
+	String AVG_SCURRIUS_MVP_RATE_KEY = "avg_scurrius_mvp_rate";
 	String NUM_ABYSSAL_LANTERNS_PURCHASED_KEY = "num_abyssal_lanterns_purchased";
 	String NUM_CRYSTAL_WEAPON_SEEDS_PURCHASED_KEY = "num_crystal_weapon_seeds_purchased";
 	String SKOTIZO_KC_PRE_BUFF_KEY = "skotizo_kc_pre_buff";
@@ -244,10 +245,22 @@ public interface CollectionLogLuckConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = AVG_SCURRIUS_MVP_RATE_KEY,
+			name = "Scurrius MVP rate",
+			description = "Fraction of the time you are MVP while fighting Scurrius. Set to 1 if you always solo.",
+			position = 26,
+			section = luckSection
+	)
+	default double avgScurriusMvpRate() {
+		// Solo is most efficient
+		return 1;
+	}
+
+	@ConfigItem(
 			keyName = AVG_ZALCANO_REWARDS_FRACTION_KEY,
 			name = "Zalcano rewards fraction",
 			description = "Avg. fraction of contribution to killing Zalcano, taking into account team size.",
-			position = 26,
+			position = 27,
 			section = luckSection
 	)
 	default double avgZalcanoRewardsFraction() {
@@ -259,7 +272,7 @@ public interface CollectionLogLuckConfig extends Config
 			keyName = AVG_ZALCANO_POINTS_KEY,
 			name = "Zalcano points",
 			description = "Your average number of points per Zalcano kill. See wiki for more info.",
-			position = 27,
+			position = 28,
 			section = luckSection
 	)
 	default int avgZalcanoPoints() {
