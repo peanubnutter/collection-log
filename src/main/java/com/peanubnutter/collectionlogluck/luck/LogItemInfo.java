@@ -6,6 +6,7 @@ import com.peanubnutter.collectionlogluck.luck.drop.*;
 import net.runelite.api.ItemID;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -14,6 +15,7 @@ public class LogItemInfo {
 
     // case-insensitive map, just in case
     private static final Map<String, LogItemInfo> logItemInfos = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+    private static final Map<Integer, LogItemInfo> logItemInfoIds = new HashMap<>();
 
     /*
      Example of each supported probability distribution type:
@@ -3951,11 +3953,17 @@ public class LogItemInfo {
         dropLuck.setItemName(itemName);
 
         logItemInfos.put(itemName, this);
+        logItemInfoIds.put(itemId, this);
     }
 
     // find the LogItemInfo corresponding to the given target
     public static LogItemInfo findByName(String targetItemName) {
         return logItemInfos.get(targetItemName);
+    }
+
+    // find the LogItemInfo corresponding to the given target
+    public static LogItemInfo findByItemId(int itemId) {
+        return logItemInfoIds.get(itemId);
     }
 
     public static Collection<LogItemInfo> getAllLogItemInfos() {

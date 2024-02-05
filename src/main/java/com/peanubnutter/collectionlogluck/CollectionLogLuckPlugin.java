@@ -5,7 +5,9 @@ import com.google.gson.JsonObject;
 import com.google.inject.Provides;
 import com.peanubnutter.collectionlogluck.luck.CollectionLogItemAliases;
 import com.peanubnutter.collectionlogluck.luck.LogItemInfo;
+import com.peanubnutter.collectionlogluck.luck.LuckCalculationResult;
 import com.peanubnutter.collectionlogluck.luck.drop.AbstractDrop;
+import com.peanubnutter.collectionlogluck.luck.drop.DropLuck;
 import com.peanubnutter.collectionlogluck.model.CollectionLog;
 import com.peanubnutter.collectionlogluck.model.CollectionLogItem;
 import com.peanubnutter.collectionlogluck.model.CollectionLogPage;
@@ -27,6 +29,7 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
 import okhttp3.Call;
@@ -34,13 +37,15 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 import javax.inject.Inject;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -61,7 +66,11 @@ public class CollectionLogLuckPlugin extends Plugin {
     private Map<Integer, Integer> loadedCollectionLogIcons;
 
     // caches collection log per username. Cleared on logout (including hopping worlds).
-    private Map<String, CollectionLog> loadedCollectionLogs;
+    // Returns a CompletableFuture to help track in-progress collection log requests
+    private Map<String, CompletableFuture<CollectionLog>> loadedCollectionLogs;
+
+    // caches luck calculations per username+luckCalculationID. Cleared on logout (including hopping worlds).
+    private Map<String, LuckCalculationResult> luckCalculationResults;
 
     @Getter
     @Inject
@@ -85,6 +94,12 @@ public class CollectionLogLuckPlugin extends Plugin {
     @Inject
     private JsonUtils jsonUtils;
 
+    @Inject
+    private OverlayManager overlayManager;
+
+    @Inject
+    private CollectionLogWidgetItemOverlay collectionLogWidgetItemOverlay;
+
     @Provides
     CollectionLogLuckConfig provideConfig(ConfigManager configManager) {
         return configManager.getConfig(CollectionLogLuckConfig.class);
@@ -92,15 +107,23 @@ public class CollectionLogLuckPlugin extends Plugin {
 
     @Override
     protected void startUp() {
+        overlayManager.add(collectionLogWidgetItemOverlay);
+
         loadedCollectionLogIcons = new HashMap<>();
         loadedCollectionLogs = new HashMap<>();
+        luckCalculationResults = new HashMap<>();
+
         chatCommandManager.registerCommandAsync(COLLECTION_LOG_LUCK_COMMAND_STRING, this::processLuckCommandMessage);
     }
 
     @Override
     protected void shutDown() {
+        overlayManager.remove(collectionLogWidgetItemOverlay);
+
         loadedCollectionLogIcons.clear();
         loadedCollectionLogs.clear();
+        luckCalculationResults.clear();
+
         chatCommandManager.unregisterCommand(COLLECTION_LOG_LUCK_COMMAND_STRING);
     }
 
@@ -108,12 +131,14 @@ public class CollectionLogLuckPlugin extends Plugin {
     public void onGameStateChanged(GameStateChanged gameStateChanged) {
         if (!isValidWorldType()) {
             loadedCollectionLogs.clear();
+            luckCalculationResults.clear();
             return;
         }
 
         if (gameStateChanged.getGameState() == GameState.LOGIN_SCREEN ||
                 gameStateChanged.getGameState() == GameState.HOPPING) {
             loadedCollectionLogs.clear();
+            luckCalculationResults.clear();
         }
     }
 
@@ -165,10 +190,13 @@ public class CollectionLogLuckPlugin extends Plugin {
         // "check item" functionality through another player's house Adventure Log
         String username = client.getLocalPlayer().getName();
 
-        fetchCollectionLogAndRunAsync(username, collectionLog -> {
-            String message = buildLuckCommandMessage(collectionLog, checkLuckMatcher.group(2));
+        fetchCollectionLog(username, true, collectionLog -> {
+            // fetching may be async, but we need to be back on client thread to add chat message.
+            clientThread.invoke(() -> {
+                String message = buildLuckCommandMessage(collectionLog, checkLuckMatcher.group(2));
 
-            client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", message, null);
+                client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", message, null);
+            });
         });
     }
 
@@ -192,50 +220,83 @@ public class CollectionLogLuckPlugin extends Plugin {
     private void processLuckCommandMessage(ChatMessage chatMessage, String message) {
         String username = getChatMessageSenderUsername(chatMessage);
 
-        fetchCollectionLogAndRunAsync(username, collectionLog -> replaceCommandMessage(chatMessage, message, collectionLog));
+        fetchCollectionLog(username, true, collectionLog -> {
+            // fetching may be async, but we need to be back on client thread to modify chat message.
+            clientThread.invoke(() -> {
+                replaceCommandMessage(chatMessage, message, collectionLog);
+            });
+        });
     }
 
-    private void fetchCollectionLogAndRunAsync(String rawUsername, Consumer<CollectionLog> callback) {
+    // Fetch the collection log for this username, then call the callback. If allowAsync is set to false,
+    // the function will call the callback immediately with a null collection log, but it will still request a
+    // new collection log if an equivalent request is not already in progress.
+    protected void fetchCollectionLog(String rawUsername, boolean allowAsync, Consumer<CollectionLog> callback) {
         final String sanitizedUsername = Text.sanitize(rawUsername);
 
-        // Only fetch collection log if necessary
-        if (loadedCollectionLogs.containsKey(sanitizedUsername)) {
-            CollectionLog collectionLog = loadedCollectionLogs.get(sanitizedUsername);
-            clientThread.invoke(() -> callback.accept(collectionLog));
-            return;
-        }
-
         try {
-            apiClient.getCollectionLog(sanitizedUsername, new Callback() {
-                @Override
-                public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    log.error("Unable to resolve !log command: " + e.getMessage());
-                    clientThread.invoke(() -> callback.accept(null));
-                }
+            // Only fetch collection log if necessary
+            if (!loadedCollectionLogs.containsKey(sanitizedUsername)) {
+                CompletableFuture<CollectionLog> collectionLogFuture = new CompletableFuture<>();
+                loadedCollectionLogs.put(sanitizedUsername, collectionLogFuture);
 
-                @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                    JsonObject collectionLogJson = apiClient.processResponse(response);
-                    response.close();
-
-                    if (collectionLogJson == null) {
-                        clientThread.invoke(() -> callback.accept(null));
-                        return;
+                apiClient.getCollectionLog(sanitizedUsername, new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        log.error("Unable to retrieve collection log: " + e.getMessage());
+                        collectionLogFuture.complete(null);
                     }
 
-                    CollectionLog collectionLog = jsonUtils.fromJsonObject(
-                            collectionLogJson.getAsJsonObject("collectionLog"),
-                            CollectionLog.class,
-                            new CollectionLogDeserializer()
-                    );
-                    loadedCollectionLogs.put(sanitizedUsername, collectionLog);
-                    clientThread.invoke(() -> callback.accept(collectionLog));
-                }
-            });
-        } catch (IOException e) {
-            log.error("Unable to resolve !luck command: " + e.getMessage());
-            clientThread.invoke(() -> callback.accept(null));
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        JsonObject collectionLogJson = apiClient.processResponse(response);
+                        response.close();
+
+                        if (collectionLogJson == null) {
+                            collectionLogFuture.complete(null);
+                            return;
+                        }
+
+                        CollectionLog collectionLog = jsonUtils.fromJsonObject(
+                                collectionLogJson.getAsJsonObject("collectionLog"),
+                                CollectionLog.class,
+                                new CollectionLogDeserializer()
+                        );
+                        collectionLogFuture.complete(collectionLog);
+                    }
+                });
+            }
+
+            CompletableFuture<CollectionLog> collectionLogFuture = loadedCollectionLogs.get(sanitizedUsername);
+            if (allowAsync) {
+                callback.accept(collectionLogFuture.get());
+            } else {
+                // Return the value if present, otherwise return null
+                callback.accept(collectionLogFuture.getNow(null));
+            }
+        } catch(IOException | ExecutionException | CancellationException | InterruptedException e){
+            log.error("Unable to retrieve collection log: " + e.getMessage());
+            callback.accept(null);
         }
+    }
+
+    // Calculate luck for this item, caching results
+    protected LuckCalculationResult fetchLuckCalculationResult(DropLuck dropLuck,
+                                              CollectionLogItem item,
+                                              CollectionLog collectionLog,
+                                              CollectionLogLuckConfig calculationConfig) {
+        String username = Text.sanitize(collectionLog.getUsername());
+        String calculationId = username + "|" + item.getId();
+
+        // Only calculate if necessary
+        if (!luckCalculationResults.containsKey(calculationId)) {
+            double luck = dropLuck.calculateLuck(item, collectionLog, calculationConfig);
+            double dryness = dropLuck.calculateDryness(item, collectionLog, calculationConfig);
+
+            luckCalculationResults.put(calculationId, new LuckCalculationResult(luck, dryness));
+        }
+
+        return luckCalculationResults.get(calculationId);
     }
 
     private void replaceCommandMessage(ChatMessage chatMessage, String message, CollectionLog collectionLog) {
@@ -373,17 +434,22 @@ public class CollectionLogLuckPlugin extends Plugin {
         loadItemIcons(ImmutableList.of(item));
 
         // calculate using player's config, even if the calculation is for another player
-        double luck = logItemInfo.getDropProbabilityDistribution().calculateLuck(item, collectionLog, config);
-        double dryness = logItemInfo.getDropProbabilityDistribution().calculateDryness(item, collectionLog, config);
+        LuckCalculationResult luckCalculationResult = fetchLuckCalculationResult(
+            logItemInfo.getDropProbabilityDistribution(),
+            item,
+            collectionLog,
+            config);
+
+        double luck = luckCalculationResult.getLuck();
+        double dryness = luckCalculationResult.getDryness();
         if (luck < 0 || luck > 1 || dryness < 0 || dryness > 1) {
             return "Unknown error calculating luck for item.";
         }
-        double overallLuck = LuckUtils.getOverallLuck(luck, dryness);
-        Color luckColor = LuckUtils.getOverallLuckColor(overallLuck);
+        LuckCalculationResult result = new LuckCalculationResult(luck, dryness);
 
         String luckString = LuckUtils.formatLuckSigDigits(luck);
         String drynessString = LuckUtils.formatLuckSigDigits(dryness);
-        String overallLuckString = LuckUtils.formatLuckSigDigits(overallLuck);
+        String overallLuckString = LuckUtils.formatLuckSigDigits(result.getOverallLuck());
 
         String shownLuckText = overallLuckString + "% luck";
         if (config.showDetailedLuck()) {
@@ -412,7 +478,7 @@ public class CollectionLogLuckPlugin extends Plugin {
                 .append(item.getName() + " ")
                 .img(loadedCollectionLogIcons.get(item.getId()))
                 .append("x" + numObtained + ": ")
-                .append(luckColor, shownLuckText)
+                .append(result.getLuckColor(), shownLuckText)
                 .append(" in ")
                 .append(kcDescription)
                 .append(warningText)
