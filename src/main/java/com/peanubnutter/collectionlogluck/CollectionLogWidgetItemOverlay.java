@@ -20,6 +20,7 @@ public class CollectionLogWidgetItemOverlay extends WidgetItemOverlay {
 
     // on a scale from 0 to 255
     private static final int LUCK_OVERLAY_ALPHA = 60;
+    private static final int LUCK_OVERLAY_TEXT_ALPHA = 200;
 
     public CollectionLogWidgetItemOverlay() {
         super();
@@ -57,12 +58,28 @@ public class CollectionLogWidgetItemOverlay extends WidgetItemOverlay {
                 collectionLog,
                 config);
 
+            Rectangle r = widgetItem.getCanvasBounds();
             Color luckColor = luckCalculationResult.getLuckColor();
+
             Color renderColor = new Color(luckColor.getRed(), luckColor.getGreen(), luckColor.getBlue(), LUCK_OVERLAY_ALPHA);
             graphics.setColor(renderColor);
 
-            Rectangle r = widgetItem.getCanvasBounds();
             graphics.fill3DRect(r.x, r.y, r.width, r.height, false);
+
+            if (config.showCollectionLogOverlayText()) {
+                String overallLuckText = Math.round(100 * luckCalculationResult.getOverallLuck()) + "%";
+
+                // drop shadow
+                graphics.setColor(Color.BLACK);
+                graphics.drawString(overallLuckText, r.x + 0.5f, r.y + r.height + 0.5f);
+
+                Color textColor = new Color(luckColor.getRed(), luckColor.getGreen(), luckColor.getBlue(), LUCK_OVERLAY_TEXT_ALPHA)
+                        .brighter().brighter();
+                graphics.setColor(textColor);
+
+                graphics.drawString(overallLuckText, r.x, r.y + r.height);
+            }
+
         });
     }
 }
