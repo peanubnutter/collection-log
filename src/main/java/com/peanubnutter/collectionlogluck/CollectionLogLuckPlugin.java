@@ -62,6 +62,9 @@ public class CollectionLogLuckPlugin extends Plugin {
     private static final Pattern COLLECTION_LOG_LUCK_CHECK_REGEX = Pattern.compile("^You have received (.*) x (.*)\\.$");
     private static final String COLLECTION_LOG_LUCK_COMMAND_STRING = "!luck";
     private static final Pattern COLLECTION_LOG_LUCK_COMMAND_PATTERN = Pattern.compile("!luck\\s*(.+)\\s*", Pattern.CASE_INSENSITIVE);
+    // Just extract the part from the icon until just before the KC string, and optionally extract the warning text,
+    // if it exists.
+    private static final Pattern PARSE_ITEM_LUCK_REGEX = Pattern.compile(".+(<img=.*) in .*(Warning.*)?$");
 
     private Map<Integer, Integer> loadedCollectionLogIcons;
 
@@ -181,6 +184,7 @@ public class CollectionLogLuckPlugin extends Plugin {
         if (config.hidePersonalLuckCalculation()) {
             return;
         }
+        // TODO: this never returns false because it represents the number of groups in the matcher, not the numebr of groups matched
         if (checkLuckMatcher.groupCount() < 2) {
             // Matcher didn't find 2 groups for some reason
             return;
@@ -393,8 +397,10 @@ public class CollectionLogLuckPlugin extends Plugin {
 
         // !luck <page-name>
         String pageName = CollectionLogPage.aliasPageName(commandTarget);
-        if (collectionLog.searchForPage(pageName) != null) {
-            return "Per-activity or per-page luck calculation is not yet supported.";
+        CollectionLogPage page = collectionLog.searchForPage(pageName);
+        if (page != null) {
+            // TODO: add config for showing long messages or not. Maybe default = false?
+            return getPageLuckMessage(collectionLog, collectionLogIsLocalPlayer, pageName, page);
         }
 
         // !luck <item-name>
@@ -405,6 +411,11 @@ public class CollectionLogLuckPlugin extends Plugin {
         if (item == null) {
             return "Item " + itemName + " is not recognized.";
         }
+
+        return getItemLuckMessage(collectionLog, collectionLogIsLocalPlayer, itemName, item, config.showDetailedLuck());
+    }
+
+    private String getItemLuckMessage(CollectionLog collectionLog, boolean collectionLogIsLocalPlayer, String itemName, CollectionLogItem item, boolean showDetailedLuck) {
         LogItemInfo logItemInfo = LogItemInfo.findByName(itemName);
         if (logItemInfo == null) {
             // This likely only happens if there is an update and the plugin does not yet support new items.
@@ -436,8 +447,8 @@ public class CollectionLogLuckPlugin extends Plugin {
         // calculate using player's config, even if the calculation is for another player
         LuckCalculationResult luckCalculationResult = fetchLuckCalculationResult(
             logItemInfo.getDropProbabilityDistribution(),
-            item,
-            collectionLog,
+                item,
+                collectionLog,
             config);
 
         double luck = luckCalculationResult.getLuck();
@@ -452,7 +463,7 @@ public class CollectionLogLuckPlugin extends Plugin {
         String overallLuckString = LuckUtils.formatLuckSigDigits(result.getOverallLuck());
 
         String shownLuckText = overallLuckString + "% luck";
-        if (config.showDetailedLuck()) {
+        if (showDetailedLuck) {
             shownLuckText = luckString + "% lucky / " + drynessString + "% dry";
         }
 
@@ -483,6 +494,47 @@ public class CollectionLogLuckPlugin extends Plugin {
                 .append(kcDescription)
                 .append(warningText)
                 .build();
+    }
+
+    private String getPageLuckMessage(CollectionLog collectionLog, boolean collectionLogIsLocalPlayer, String pageName, CollectionLogPage page) {
+        boolean errorsFound = false;
+        StringBuilder luckString = new StringBuilder();
+
+        for (CollectionLogItem item : page.getItems()) {
+            LogItemInfo logItemInfo = LogItemInfo.findByName(item.getName());
+            if (logItemInfo == null) {
+                // This likely only happens if there is an update and the plugin does not yet support new items.
+                continue;
+            }
+
+            // always show simplified luck because the messages get very long
+            String chatMessage = getItemLuckMessage(collectionLog, collectionLogIsLocalPlayer, item.getName(), item, false);
+
+            Matcher checkLuckMatcher = PARSE_ITEM_LUCK_REGEX.matcher(chatMessage);
+            if (!checkLuckMatcher.matches()) {
+                errorsFound = true;
+                continue;
+            }
+
+            // For now, treat the case where there is warning text the same as an error
+            if (checkLuckMatcher.group(1) == null || checkLuckMatcher.group(2) != null) {
+                errorsFound = true;
+                continue;
+            }
+
+            luckString.append(" | ");
+
+            luckString.append(checkLuckMatcher.group(1).replace("% luck", "%"));
+        }
+
+        String warningText = "";
+        if (errorsFound) {
+            warningText = " - Not all items computed accurately.";
+        }
+
+        return page.getName() + " luck stats" +
+                luckString.toString() +
+                warningText;
     }
 
 }
