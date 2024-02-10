@@ -1,7 +1,7 @@
 package com.peanubnutter.collectionlogluck.luck.drop;
 
-import com.peanubnutter.collectionlogluck.model.CollectionLog;
 import com.peanubnutter.collectionlogluck.CollectionLogLuckConfig;
+import com.peanubnutter.collectionlogluck.model.CollectionLog;
 import com.peanubnutter.collectionlogluck.model.CollectionLogItem;
 import com.peanubnutter.collectionlogluck.luck.RollInfo;
 import com.google.common.collect.ImmutableList;

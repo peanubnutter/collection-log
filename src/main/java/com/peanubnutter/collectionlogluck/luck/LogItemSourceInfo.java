@@ -59,6 +59,7 @@ public enum LogItemSourceInfo {
     RIFTS_SEARCHES("Rifts searches"),
     SARACHNIS_KILLS("Sarachnis kills"),
     SCORPIA_KILLS("Scorpia kills"),
+    SCURRIUS_KILLS("Scurrius kills"),
     SKOTIZO_KILLS("Skotizo kills"),
     SPINDEL_KILLS("Spindel kills"),
     SPOILS_OF_WAR_OPENED("Spoils of war opened"),

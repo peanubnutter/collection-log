@@ -1,7 +1,7 @@
 package com.peanubnutter.collectionlogluck.luck.drop;
 
-import com.peanubnutter.collectionlogluck.model.CollectionLog;
 import com.peanubnutter.collectionlogluck.CollectionLogLuckConfig;
+import com.peanubnutter.collectionlogluck.model.CollectionLog;
 import com.peanubnutter.collectionlogluck.model.CollectionLogItem;
 import com.peanubnutter.collectionlogluck.model.CollectionLogKillCount;
 import com.peanubnutter.collectionlogluck.luck.LogItemInfo;
@@ -252,6 +252,12 @@ public abstract class AbstractDrop implements DropLuck {
                         && configOptions.contains(CollectionLogLuckConfig.AVG_VETION_REWARDS_FRACTION_KEY)
         ) {
             dropChance *= clampContribution(config.avgVetionRewardsFraction());
+        }
+        else if (
+                rollInfo.getDropSource().equals(LogItemSourceInfo.SCURRIUS_KILLS)
+                        && configOptions.contains(CollectionLogLuckConfig.AVG_SCURRIUS_MVP_RATE_KEY)
+        ) {
+            dropChance *= clampContribution(config.avgScurriusMvpRate());
         }
 
         return dropChance;

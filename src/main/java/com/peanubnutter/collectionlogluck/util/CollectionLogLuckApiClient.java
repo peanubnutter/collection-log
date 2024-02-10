@@ -18,7 +18,8 @@ public class CollectionLogLuckApiClient
 	private static final String COLLECTION_LOG_API_SCHEME = "https";
 	private static final String COLLECTION_LOG_USER_PATH = "user";
 	private static final String COLLECTION_LOG_LOG_PATH = "collectionlog";
-	private static final String COLLECTION_LOG_USER_AGENT = "Runelite collection-log/" + CollectionLogLuckConfig.COLLECTION_LOG_VERSION;
+	// Use a separate user agent to distinguish collection-log plugin from collection-log-luck plugin
+	private static final String COLLECTION_LOG_LUCK_USER_AGENT = "Runelite collection-log-luck/" + CollectionLogLuckConfig.COLLECTION_LOG_VERSION;
 
 	@Inject
 	private CollectionLogLuckConfig config;
@@ -42,7 +43,7 @@ public class CollectionLogLuckApiClient
 	private Request.Builder createRequestBuilder(HttpUrl url)
 	{
 		return new Request.Builder()
-			.header("User-Agent", COLLECTION_LOG_USER_AGENT)
+			.header("User-Agent", COLLECTION_LOG_LUCK_USER_AGENT)
 			.url(url);
 	}
 

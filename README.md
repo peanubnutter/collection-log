@@ -1,24 +1,22 @@
 
 # Collection Log Luck Plugin ![Plugin Installs](https://img.shields.io/endpoint?url=https://i.pluginhub.info/shields/installs/plugin/collection-log-luck) ![Plugin Rank](https://img.shields.io/endpoint?url=https://i.pluginhub.info/shields/rank/plugin/collection-log-luck)
 
-A [Runelite](https://github.com/runelite/runelite) plugin that calculates luck for collection log items by pulling data from [collectionlog.net](https://collectionlog.net).
+A [Runelite](https://github.com/runelite/runelite) plugin that displays your luck for collection log items by pulling data from [collectionlog.net](https://collectionlog.net).
 
 ## Features
-* Share your luck stats with other players or view other players' luck using a chat command.
-* Click "Check" on supported items in the collection log to calculate your luck.
-* Configurable assumptions for certain drops for more accurate calculations.
+* View your calculated luck for supported items in the collection log.
+* Share your luck stats with other players using a chat command.
+* Click "Check" on items in the collection log for details.
+* Configure assumptions for certain drops for more accurate calculations.
 * Coming soon: Per-boss and account-wide luck calculation
 
-## Commands
-Type `!luck` followed by an item name. Alternatively, click "Check" on any item icon in the collection log pane to 
-show your luck stats for that item.
+## Demo
+<img src="https://i.imgur.com/3CVjPJt.gif" width="500" />
 
-<img src="https://i.imgur.com/5pPIw0C.png" width="500" />
+Click "Check" on any supported item for detailed luck stats.
 
+Share your luck stats by typing `!luck`, followed by an item name. 
 The command will try to infer the intended item name if you abbreviate or misspell it.
-
-<img src="https://i.imgur.com/AHNv1V0.gif" width="500" />
-Note: The command syntax shown above is outdated.
 
 Examples:
 ```
@@ -26,8 +24,6 @@ Examples:
 !luck enhanced weapon seed
 !luck zulrah pet
 ```
-
-In the future, luck for an entire page or your entire account can be shared rather than single items.
 
 ## Troubleshooting
 

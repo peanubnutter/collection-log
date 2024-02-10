@@ -266,6 +266,12 @@ public final class CollectionLogItemAliases
             case "pet sucellus":
                 return LogItemInfo.BARON_28250.getItemName();
 
+            case "pet scurrius":
+            case "scurrius pet":
+            case "scurry pet":
+            case "pet scurry":
+                return LogItemInfo.SCURRY_28801.getItemName();
+
             default:
                 return backupFuzzyMatch(aliasNameRaw);
         }
