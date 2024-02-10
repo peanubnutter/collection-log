@@ -19,7 +19,7 @@ public class CollectionLogWidgetItemOverlay extends WidgetItemOverlay {
     private CollectionLogLuckConfig config;
 
     // on a scale from 0 to 255
-    private static final int LUCK_OVERLAY_ALPHA = 60;
+    private static final int LUCK_OVERLAY_ALPHA = 40;
     private static final int LUCK_OVERLAY_TEXT_ALPHA = 200;
 
     public CollectionLogWidgetItemOverlay() {
