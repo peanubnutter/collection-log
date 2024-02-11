@@ -7,6 +7,6 @@ public class UnimplementedDrop extends AbstractUnsupportedDrop {
 
    @Override
     public String getIncalculableReason(CollectionLogItem item, CollectionLogLuckConfig config) {
-        return itemName + " is not currently supported but may be in the future.";
+        return "Collection Log Luck plugin does not currently support luck calculation for " + itemName;
     }
 }

@@ -12,7 +12,7 @@ public class DeterministicDrop extends AbstractUnsupportedDrop {
 
     @Override
     public String getIncalculableReason(CollectionLogItem item, CollectionLogLuckConfig config) {
-        return itemName + " is obtained in a non-luck-based way.";
+        return "Collection Log Luck plugin can't calculate " + itemName + ": obtained in a non-luck-based way";
     }
 
 }
