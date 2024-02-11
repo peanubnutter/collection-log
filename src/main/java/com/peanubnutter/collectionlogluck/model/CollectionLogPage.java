@@ -165,14 +165,12 @@ public class CollectionLogPage
 			case "veti":
 				return "Vet'ion and Calvar'ion";
 			case "vork":
-			case "vorki":
 				return "Vorkath";
 			case "wt":
 			case "todt":
 				return "Wintertodt";
 			case "whisperer":
 			case "whisp":
-			case "wisp":
 				return "The Whisperer";
 			case "zalc":
 				return "Zalcano";
