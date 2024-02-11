@@ -11,7 +11,7 @@ A [Runelite](https://github.com/runelite/runelite) plugin that displays your luc
 * Coming soon: Per-boss and account-wide luck calculation
 
 ## Demo
-<img src="https://i.imgur.com/3CVjPJt.gif" width="500" />
+<img src="https://i.imgur.com/tsmJa0R.gif" width="500" />
 
 Click "Check" on any supported item for detailed luck stats.
 
@@ -37,11 +37,6 @@ collectionlog.net using the separate Collection Log Plugin.
 ## Luck Configuration
 
 Displaying your own luck can be disabled in the plugin configuration.
-
-If you enable detailed luck stats in the plugin configuration, you will see luck and dryness separately. Luck is the
-percent of players that you are luckier than. Dryness is the percent of player that you are drier than. By default,
-these are combined into a single "overall" luck meter. An overall luck near 50% or luck/dryness near 0 might just mean
-you have low KC and luck calculation is unreliable at that point.
 
 The collection log does not have enough information to calculate luck for every item in the game, for example if KC is
 not tracked for some minigames or monsters. In some cases, providing additional information can allow a 
