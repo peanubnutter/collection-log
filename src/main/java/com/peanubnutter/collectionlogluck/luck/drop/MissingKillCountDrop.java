@@ -9,6 +9,7 @@ public class MissingKillCountDrop extends AbstractUnsupportedDrop {
 
     @Override
     public String getIncalculableReason(CollectionLogItem item, CollectionLogLuckConfig config) {
-        return "The collection log has no reliable KC for one or more drop sources for " + itemName;
+        return "Collection Log Luck plugin can't calculate " + itemName + ": KC not tracked for some drop sources";
+
     }
 }
