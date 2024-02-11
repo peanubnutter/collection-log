@@ -61,21 +61,9 @@ public interface CollectionLogLuckConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "show_detailed_luck",
-			name = "Show detailed luck",
-			description = "Instead of overall luck meter, show luck (% players unluckier than you) and dryness (% players luckier than you) separately.",
-			position = 2,
-			section = appearanceSection
-	)
-	default boolean showDetailedLuck()
-	{
-		return false;
-	}
-
-	@ConfigItem(
 			keyName = "show_luck_text_on_collection_log",
-			name = "Show collection log overlay text",
-			description = "Whether to show your luck as a rough percentage on the collection log page.",
+			name = "Show collection log luck percentile",
+			description = "Whether to show your luck percentile on the collection log page.",
 			position = 3,
 			section = appearanceSection
 	)

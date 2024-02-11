@@ -405,6 +405,8 @@ public class CollectionLogLuckPlugin extends Plugin {
         if (item == null) {
             return "Item " + itemName + " is not recognized.";
         }
+        int numObtained = item.getQuantity();
+
         LogItemInfo logItemInfo = LogItemInfo.findByName(itemName);
         if (logItemInfo == null) {
             // This likely only happens if there is an update and the plugin does not yet support new items.
@@ -445,18 +447,26 @@ public class CollectionLogLuckPlugin extends Plugin {
         if (luck < 0 || luck > 1 || dryness < 0 || dryness > 1) {
             return "Unknown error calculating luck for item.";
         }
-        LuckCalculationResult result = new LuckCalculationResult(luck, dryness);
 
-        String luckString = LuckUtils.formatLuckSigDigits(luck);
-        String drynessString = LuckUtils.formatLuckSigDigits(dryness);
-        String overallLuckString = LuckUtils.formatLuckSigDigits(result.getOverallLuck());
+        int luckPercentile = (int) Math.round(luckCalculationResult.getOverallLuck()*100);
 
-        String shownLuckText = overallLuckString + "% luck";
-        if (config.showDetailedLuck()) {
-            shownLuckText = luckString + "% lucky / " + drynessString + "% dry";
+        StringBuilder shownLuckText = new StringBuilder()
+                .append("(")
+                .append(luckPercentile)
+                .append(LuckUtils.getOrdinalSuffix(luckPercentile))
+                .append(" percentile")
+                .append(" | ")
+                .append(LuckUtils.formatLuckSigDigits(dryness))
+                .append("% luckier than you");
+        // Only show luck if you've received an item - otherwise, luck is always just 0.
+        if (numObtained > 0 || luck > 0) {
+            shownLuckText
+                    .append(" | ")
+                    .append(LuckUtils.formatLuckSigDigits(luck))
+                    .append("% drier than you");
         }
+        shownLuckText.append(")");
 
-        int numObtained = item.getQuantity();
         String kcDescription = logItemInfo.getDropProbabilityDistribution().getKillCountDescription(collectionLog);
 
         // rarer than 1 in 100M is likely an error. Note: 0 luck or 0 dryness is normal as a result of low KC and does
@@ -469,16 +479,11 @@ public class CollectionLogLuckPlugin extends Plugin {
             }
         }
 
-        // This reports detailed luck stats (luck + dryness) rather than a simplified average. We should do a user study
-        // to see if reporting both luck/dryness is too confusing. To me, there is a difference between receiving 0
-        // drops in 1 kc and being still at ~50% versus receiving 5 drops in 500 kc and being exactly on drop rate.
-        // This difference is lost if reporting averaged luck + dryness as a single number.
-        // This could be a toggleable option...
         return new ChatMessageBuilder()
                 .append(item.getName() + " ")
                 .img(loadedCollectionLogIcons.get(item.getId()))
                 .append("x" + numObtained + ": ")
-                .append(result.getLuckColor(), shownLuckText)
+                .append(luckCalculationResult.getLuckColor(), shownLuckText.toString())
                 .append(" in ")
                 .append(kcDescription)
                 .append(warningText)

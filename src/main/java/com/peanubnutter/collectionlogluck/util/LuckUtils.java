@@ -50,4 +50,18 @@ public final class LuckUtils {
         int g = (int)(255 * (1 - drynessFraction));
         return new Color(255, g, 0).darker();
     }
+
+    // Given a number (e.g. 3), return its ordinal suffix ("rd").
+    public static String getOrdinalSuffix(int n) {
+        int tensDigit = n % 10;
+        int percentile = n % 100;
+        if (tensDigit == 1 && percentile != 11) {
+            return "st";
+        } else if (tensDigit == 2 && percentile != 12) {
+            return "nd";
+        } else if (tensDigit == 3 && percentile != 13) {
+            return "rd";
+        }
+        return "th";
+    }
 }
