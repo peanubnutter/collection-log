@@ -308,7 +308,8 @@ public class CollectionLogLuckPlugin extends Plugin {
         String replacementMessage;
         if (collectionLog == null) {
             String username = getChatMessageSenderUsername(chatMessage);
-            replacementMessage = "No Collection Log data found for user: " + username;
+            replacementMessage = "Collection Log not found for " + username
+                    + ". Make sure to upload to collectionlog.net using the Collection Log plugin.";
         } else {
             String commandTarget = commandMatcher.group(1);
             replacementMessage = buildLuckCommandMessage(collectionLog, commandTarget);
@@ -451,13 +452,21 @@ public class CollectionLogLuckPlugin extends Plugin {
         int luckPercentile = (int) Math.round(luckCalculationResult.getOverallLuck()*100);
 
         StringBuilder shownLuckText = new StringBuilder()
-                .append("(")
-                .append(luckPercentile)
+                .append("(");
+
+        if (config.replacePercentileWithDrycalcNumber()) {
+            shownLuckText.append(LuckUtils.formatLuckSigDigits(1 - dryness))
+                    .append("% <lt>= your luck");
+        } else {
+            shownLuckText.append(luckPercentile)
                 .append(LuckUtils.getOrdinalSuffix(luckPercentile))
-                .append(" percentile")
-                .append(" | ")
-                .append(LuckUtils.formatLuckSigDigits(dryness))
-                .append("% luckier than you");
+                .append(" percentile");
+        }
+
+        shownLuckText.append(" | ")
+            .append(LuckUtils.formatLuckSigDigits(dryness))
+            .append("% luckier than you");
+
         // Only show luck if you've received an item - otherwise, luck is always just 0.
         if (numObtained > 0 || luck > 0) {
             shownLuckText

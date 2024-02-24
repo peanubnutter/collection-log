@@ -72,6 +72,29 @@ public interface CollectionLogLuckConfig extends Config
 		return true;
 	}
 
+	@ConfigItem(
+			keyName = "show_luck_background_on_collection_log",
+			name = "Show collection log background colors",
+			description = "Whether to show your luck percentile as a background color the collection log page.",
+			position = 4,
+			section = appearanceSection
+	)
+	default boolean showCollectionLogOverlayBackground()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "replace_percentile_with_drycalc_number",
+			name = "Replace percentile with DryCalc #",
+			description = "Show DryCalc number (% chance of having your # of drops or fewer) rather than percentile",
+			position = 5,
+			section = appearanceSection
+	)
+	default boolean replacePercentileWithDrycalcNumber()
+	{
+		return false;
+	}
 
 	// ############### Luck section ###############
 

@@ -27,6 +27,10 @@ Examples:
 
 ## Troubleshooting
 
+IMPORTANT: Make sure you have uploaded your collection log to collectionlog.net using the regular Collection Log 
+plugin (https://runelite.net/plugin-hub/show/collection-log) first, otherwise, your luck will not 
+show up for anyone using this plugin, including yourself. 
+
 The first time loading your own (or someone else's) collection log, there may be a slight delay. Reliability of this
 plugin depends upon the reliability of collectionlog.net. This plugin will not re-download your or someone else's
 collection log until you re-log.
