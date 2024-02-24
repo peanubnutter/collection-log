@@ -72,6 +72,17 @@ public interface CollectionLogLuckConfig extends Config
 		return true;
 	}
 
+	@ConfigItem(
+			keyName = "show_luck_background_on_collection_log",
+			name = "Show collection log background colors",
+			description = "Whether to show your luck percentile as a background color the collection log page.",
+			position = 4,
+			section = appearanceSection
+	)
+	default boolean showCollectionLogOverlayBackground()
+	{
+		return true;
+	}
 
 	// ############### Luck section ###############
 

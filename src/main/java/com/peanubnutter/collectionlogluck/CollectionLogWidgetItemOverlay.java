@@ -61,10 +61,12 @@ public class CollectionLogWidgetItemOverlay extends WidgetItemOverlay {
             Rectangle r = widgetItem.getCanvasBounds();
             Color luckColor = luckCalculationResult.getLuckColor();
 
-            Color renderColor = new Color(luckColor.getRed(), luckColor.getGreen(), luckColor.getBlue(), LUCK_OVERLAY_ALPHA);
-            graphics.setColor(renderColor);
+            if (config.showCollectionLogOverlayBackground()) {
+                Color renderColor = new Color(luckColor.getRed(), luckColor.getGreen(), luckColor.getBlue(), LUCK_OVERLAY_ALPHA);
+                graphics.setColor(renderColor);
 
-            graphics.fill3DRect(r.x, r.y, r.width, r.height, false);
+                graphics.fill3DRect(r.x, r.y, r.width, r.height, false);
+            }
 
             if (config.showCollectionLogOverlayText()) {
                 String overallLuckText = Math.round(100 * luckCalculationResult.getOverallLuck()) + "%";
