@@ -69,7 +69,10 @@ public class CollectionLogWidgetItemOverlay extends WidgetItemOverlay {
             }
 
             if (config.showCollectionLogOverlayText()) {
-                String overallLuckText = Math.round(100 * luckCalculationResult.getOverallLuck()) + "%";
+                double luckToDisplay = config.replacePercentileWithDrycalcNumber() ?
+                         1 - luckCalculationResult.getDryness() : luckCalculationResult.getOverallLuck();
+
+                String overallLuckText = Math.round(100 * luckToDisplay) + "%";
 
                 // drop shadow
                 graphics.setColor(Color.BLACK);
