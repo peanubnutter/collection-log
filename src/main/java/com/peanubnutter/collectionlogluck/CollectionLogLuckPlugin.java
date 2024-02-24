@@ -308,7 +308,8 @@ public class CollectionLogLuckPlugin extends Plugin {
         String replacementMessage;
         if (collectionLog == null) {
             String username = getChatMessageSenderUsername(chatMessage);
-            replacementMessage = "No Collection Log data found for user: " + username;
+            replacementMessage = "Collection Log not found for " + username
+                    + ". Make sure to upload to collectionlog.net using the Collection Log plugin.";
         } else {
             String commandTarget = commandMatcher.group(1);
             replacementMessage = buildLuckCommandMessage(collectionLog, commandTarget);
