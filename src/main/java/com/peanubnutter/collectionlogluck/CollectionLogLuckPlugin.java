@@ -193,7 +193,7 @@ public class CollectionLogLuckPlugin extends Plugin {
         fetchCollectionLog(username, true, collectionLog -> {
             // fetching may be async, but we need to be back on client thread to add chat message.
             clientThread.invoke(() -> {
-                String message = buildLuckCommandMessage(collectionLog, checkLuckMatcher.group(2));
+                String message = buildLuckCommandMessage(collectionLog, checkLuckMatcher.group(2), false);
 
                 client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", message, null);
             });
@@ -312,7 +312,7 @@ public class CollectionLogLuckPlugin extends Plugin {
                     + ". Make sure to upload to collectionlog.net using the Collection Log plugin.";
         } else {
             String commandTarget = commandMatcher.group(1);
-            replacementMessage = buildLuckCommandMessage(collectionLog, commandTarget);
+            replacementMessage = buildLuckCommandMessage(collectionLog, commandTarget, true);
         }
 
         chatMessage.getMessageNode().setValue(replacementMessage);
@@ -373,45 +373,49 @@ public class CollectionLogLuckPlugin extends Plugin {
      *
      * @param collectionLog The collection log to use for the luck calculation (which may be another player's)
      * @param commandTarget The item or page for which to calculate luck. If omitted, calculates account-level luck
+     * @param useFuzzyMatch For sources that could be misspelled, e.g. user input, use a fuzzy match algorithm to
+     *                      guess the intended item target
      * @return Replacement message
      */
-    private String buildLuckCommandMessage(CollectionLog collectionLog, String commandTarget) {
+    private String buildLuckCommandMessage(CollectionLog collectionLog, String commandTarget, boolean useFuzzyMatch) {
         boolean collectionLogIsLocalPlayer =
                 client.getLocalPlayer().getName().equalsIgnoreCase(collectionLog.getUsername());
 
         if (collectionLogIsLocalPlayer && config.hidePersonalLuckCalculation()) {
             // This should make it obvious that 1) The player can go to the config to change this setting, and 2) other
             // players can still see their luck if they type in a !log luck command.
-            return "Your luck is set to be hidden from you in the plugin config.";
+            return "Collection Log Luck plugin: Your luck is set to be hidden from you in the plugin config.";
         }
         // !luck [account|total|overall]
         if (commandTarget == null
                 || commandTarget.equalsIgnoreCase("account")
                 || commandTarget.equalsIgnoreCase("total")
                 || commandTarget.equalsIgnoreCase("overall")) {
-            return "Account-level luck calculation is not yet supported.";
+            return "Collection Log Luck plugin: Account-level luck calculation is not yet supported.";
         }
 
         // !luck <page-name>
         String pageName = CollectionLogPage.aliasPageName(commandTarget);
         if (collectionLog.searchForPage(pageName) != null) {
-            return "Per-activity or per-page luck calculation is not yet supported.";
+            return "Collection Log Luck plugin: Per-activity or per-page luck calculation is not yet supported.";
         }
 
         // !luck <item-name>
         String itemName = itemDisplayNameToItemName(commandTarget);
-        itemName = CollectionLogItemAliases.aliasItemName(itemName);
+        if (useFuzzyMatch) {
+            itemName = CollectionLogItemAliases.aliasItemName(itemName);
+        }
 
         CollectionLogItem item = collectionLog.searchForItem(itemName);
         if (item == null) {
-            return "Item " + itemName + " is not recognized.";
+            return "Collection Log Luck plugin: Item " + itemName + " is not recognized.";
         }
         int numObtained = item.getQuantity();
 
         LogItemInfo logItemInfo = LogItemInfo.findByName(itemName);
         if (logItemInfo == null) {
             // This likely only happens if there is an update and the plugin does not yet support new items.
-            return "Item " + itemName + " is not yet supported for luck calculation.";
+            return "Collection Log Luck plugin: Item " + itemName + " is not yet supported for luck calculation.";
         }
 
         String warningText = "";
@@ -446,7 +450,7 @@ public class CollectionLogLuckPlugin extends Plugin {
         double luck = luckCalculationResult.getLuck();
         double dryness = luckCalculationResult.getDryness();
         if (luck < 0 || luck > 1 || dryness < 0 || dryness > 1) {
-            return "Unknown error calculating luck for item.";
+            return "Collection Log Luck plugin: Unknown error calculating luck for item.";
         }
 
         int luckPercentile = (int) Math.round(luckCalculationResult.getOverallLuck()*100);
