@@ -3940,6 +3940,8 @@ public class LogItemInfo {
             new MissingKillCountDrop());
     public static LogItemInfo STURDY_BEEHIVE_PARTS_28674 = new LogItemInfo("Sturdy beehive parts", 28674,
             new MissingKillCountDrop());
+    public static LogItemInfo ZOMBIE_AXE_28813 = new LogItemInfo("Broken zombie axe", 28813,
+            new MissingKillCountDrop());
 
     private final String itemName;
     private final int itemId;
