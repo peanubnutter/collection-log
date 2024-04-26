@@ -61,6 +61,12 @@ public class CollectionLogDeserializer implements JsonDeserializer<CollectionLog
                         CollectionLogKillCount newKillCount;
                         newKillCount = context.deserialize(killCount, CollectionLogKillCount.class);
                         newKillCounts.add(newKillCount);
+
+                        // Uncomment to update LogItemSourceInfo list
+//                        LogItemSourceInfo logItemSourceInfo = LogItemSourceInfo.findByName(newKillCount.getName());
+//                        if (logItemSourceInfo == null) {
+//                            System.out.println("New collection log page detected!: (" + newKillCount.getName() + ")");
+//                        }
                     }
                 }
 

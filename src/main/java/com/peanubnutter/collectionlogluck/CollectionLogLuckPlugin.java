@@ -26,6 +26,7 @@ import net.runelite.client.chat.ChatCommandManager;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
@@ -62,6 +63,7 @@ public class CollectionLogLuckPlugin extends Plugin {
     private static final Pattern COLLECTION_LOG_LUCK_CHECK_REGEX = Pattern.compile("^You have received (.*) x (.*)\\.$");
     private static final String COLLECTION_LOG_LUCK_COMMAND_STRING = "!luck";
     private static final Pattern COLLECTION_LOG_LUCK_COMMAND_PATTERN = Pattern.compile("!luck\\s*(.+)\\s*", Pattern.CASE_INSENSITIVE);
+    private static final String COLLECTION_LOG_LUCK_CONFIG_GROUP = "collectionlogluck";
 
     private Map<Integer, Integer> loadedCollectionLogIcons;
 
@@ -193,7 +195,7 @@ public class CollectionLogLuckPlugin extends Plugin {
         fetchCollectionLog(username, true, collectionLog -> {
             // fetching may be async, but we need to be back on client thread to add chat message.
             clientThread.invoke(() -> {
-                String message = buildLuckCommandMessage(collectionLog, checkLuckMatcher.group(2));
+                String message = buildLuckCommandMessage(collectionLog, checkLuckMatcher.group(2), false);
 
                 client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", message, null);
             });
@@ -274,7 +276,7 @@ public class CollectionLogLuckPlugin extends Plugin {
                 // Return the value if present, otherwise return null
                 callback.accept(collectionLogFuture.getNow(null));
             }
-        } catch(IOException | ExecutionException | CancellationException | InterruptedException e){
+        } catch (IOException | ExecutionException | CancellationException | InterruptedException e) {
             log.error("Unable to retrieve collection log: " + e.getMessage());
             callback.accept(null);
         }
@@ -282,9 +284,9 @@ public class CollectionLogLuckPlugin extends Plugin {
 
     // Calculate luck for this item, caching results
     protected LuckCalculationResult fetchLuckCalculationResult(DropLuck dropLuck,
-                                              CollectionLogItem item,
-                                              CollectionLog collectionLog,
-                                              CollectionLogLuckConfig calculationConfig) {
+                                                               CollectionLogItem item,
+                                                               CollectionLog collectionLog,
+                                                               CollectionLogLuckConfig calculationConfig) {
         String username = Text.sanitize(collectionLog.getUsername());
         String calculationId = username + "|" + item.getId();
 
@@ -312,7 +314,7 @@ public class CollectionLogLuckPlugin extends Plugin {
                     + ". Make sure to upload to collectionlog.net using the Collection Log plugin.";
         } else {
             String commandTarget = commandMatcher.group(1);
-            replacementMessage = buildLuckCommandMessage(collectionLog, commandTarget);
+            replacementMessage = buildLuckCommandMessage(collectionLog, commandTarget, true);
         }
 
         chatMessage.getMessageNode().setValue(replacementMessage);
@@ -373,45 +375,49 @@ public class CollectionLogLuckPlugin extends Plugin {
      *
      * @param collectionLog The collection log to use for the luck calculation (which may be another player's)
      * @param commandTarget The item or page for which to calculate luck. If omitted, calculates account-level luck
+     * @param useFuzzyMatch For sources that could be misspelled, e.g. user input, use a fuzzy match algorithm to
+     *                      guess the intended item target
      * @return Replacement message
      */
-    private String buildLuckCommandMessage(CollectionLog collectionLog, String commandTarget) {
+    private String buildLuckCommandMessage(CollectionLog collectionLog, String commandTarget, boolean useFuzzyMatch) {
         boolean collectionLogIsLocalPlayer =
                 client.getLocalPlayer().getName().equalsIgnoreCase(collectionLog.getUsername());
 
         if (collectionLogIsLocalPlayer && config.hidePersonalLuckCalculation()) {
             // This should make it obvious that 1) The player can go to the config to change this setting, and 2) other
             // players can still see their luck if they type in a !log luck command.
-            return "Your luck is set to be hidden from you in the plugin config.";
+            return "Collection Log Luck plugin: Your luck is set to be hidden from you in the plugin config.";
         }
         // !luck [account|total|overall]
         if (commandTarget == null
                 || commandTarget.equalsIgnoreCase("account")
                 || commandTarget.equalsIgnoreCase("total")
                 || commandTarget.equalsIgnoreCase("overall")) {
-            return "Account-level luck calculation is not yet supported.";
+            return "Collection Log Luck plugin: Account-level luck calculation is not yet supported.";
         }
 
         // !luck <page-name>
         String pageName = CollectionLogPage.aliasPageName(commandTarget);
         if (collectionLog.searchForPage(pageName) != null) {
-            return "Per-activity or per-page luck calculation is not yet supported.";
+            return "Collection Log Luck plugin: Per-activity or per-page luck calculation is not yet supported.";
         }
 
         // !luck <item-name>
         String itemName = itemDisplayNameToItemName(commandTarget);
-        itemName = CollectionLogItemAliases.aliasItemName(itemName);
+        if (useFuzzyMatch) {
+            itemName = CollectionLogItemAliases.aliasItemName(itemName);
+        }
 
         CollectionLogItem item = collectionLog.searchForItem(itemName);
         if (item == null) {
-            return "Item " + itemName + " is not recognized.";
+            return "Collection Log Luck plugin: Item " + itemName + " is not recognized.";
         }
         int numObtained = item.getQuantity();
 
         LogItemInfo logItemInfo = LogItemInfo.findByName(itemName);
         if (logItemInfo == null) {
             // This likely only happens if there is an update and the plugin does not yet support new items.
-            return "Item " + itemName + " is not yet supported for luck calculation.";
+            return "Collection Log Luck plugin: Item " + itemName + " is not yet supported for luck calculation.";
         }
 
         String warningText = "";
@@ -438,18 +444,18 @@ public class CollectionLogLuckPlugin extends Plugin {
 
         // calculate using player's config, even if the calculation is for another player
         LuckCalculationResult luckCalculationResult = fetchLuckCalculationResult(
-            logItemInfo.getDropProbabilityDistribution(),
-            item,
-            collectionLog,
-            config);
+                logItemInfo.getDropProbabilityDistribution(),
+                item,
+                collectionLog,
+                config);
 
         double luck = luckCalculationResult.getLuck();
         double dryness = luckCalculationResult.getDryness();
         if (luck < 0 || luck > 1 || dryness < 0 || dryness > 1) {
-            return "Unknown error calculating luck for item.";
+            return "Collection Log Luck plugin: Unknown error calculating luck for item.";
         }
 
-        int luckPercentile = (int) Math.round(luckCalculationResult.getOverallLuck()*100);
+        int luckPercentile = (int) Math.round(luckCalculationResult.getOverallLuck() * 100);
 
         StringBuilder shownLuckText = new StringBuilder()
                 .append("(");
@@ -459,13 +465,13 @@ public class CollectionLogLuckPlugin extends Plugin {
                     .append("% <lt>= your luck");
         } else {
             shownLuckText.append(luckPercentile)
-                .append(LuckUtils.getOrdinalSuffix(luckPercentile))
-                .append(" percentile");
+                    .append(LuckUtils.getOrdinalSuffix(luckPercentile))
+                    .append(" percentile");
         }
 
         shownLuckText.append(" | ")
-            .append(LuckUtils.formatLuckSigDigits(dryness))
-            .append("% luckier than you");
+                .append(LuckUtils.formatLuckSigDigits(dryness))
+                .append("% luckier than you");
 
         // Only show luck if you've received an item - otherwise, luck is always just 0.
         if (numObtained > 0 || luck > 0) {
@@ -497,6 +503,25 @@ public class CollectionLogLuckPlugin extends Plugin {
                 .append(kcDescription)
                 .append(warningText)
                 .build();
+    }
+
+    @Subscribe
+    public void onConfigChanged(ConfigChanged event) {
+        if (event.getGroup().equals(COLLECTION_LOG_LUCK_CONFIG_GROUP)) {
+            List<String> nonCacheClearingConfigSettings = ImmutableList.of(
+                    config.HIDE_PERSONAL_LUCK_CALCULATION_KEY,
+                    config.SHOW_LUCK_TEXT_ON_COLLECTION_LOG_KEY,
+                    config.SHOW_LUCK_BACKGROUND_ON_COLLECTION_LOG_KEY,
+                    config.REPLACE_PERCENTILE_WITH_DRYCALC_NUMBER_KEY
+            );
+
+            // Skip clearing calculation cache if the modified setting could not possibly affect calculation results
+            if (nonCacheClearingConfigSettings.contains(event.getKey())) {
+                return;
+            }
+
+            luckCalculationResults.clear();
+        }
     }
 
 }

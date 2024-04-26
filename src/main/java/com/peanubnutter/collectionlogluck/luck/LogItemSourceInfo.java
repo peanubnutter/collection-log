@@ -2,6 +2,7 @@ package com.peanubnutter.collectionlogluck.luck;
 
 
 public enum LogItemSourceInfo {
+
     // Currently, only item sources with KCs in the collection log are listed
     ABYSSAL_SIRE_KILLS("Abyssal Sire kills"),
     ALCHEMICAL_HYDRA_KILLS("Alchemical Hydra kills"),
@@ -46,6 +47,7 @@ public enum LogItemSourceInfo {
     LAST_MAN_STANDING_KILLS("Last Man Standing Kills"),
     LAST_MAN_STANDING_WINS("Last Man Standing Wins"),
     LEVIATHAN_KILLS("Leviathan kills"),
+    LUNAR_CHESTS_OPENED("Lunar Chests opened"),
     MASTER_CLUES_COMPLETED("Master clues completed"),
     MEDIUM_CLUES_COMPLETED("Medium clues completed"),
     NEX_KILLS("Nex kills"),
@@ -57,10 +59,12 @@ public enum LogItemSourceInfo {
     REWARD_PERMITS_CLAIMED("Reward permits claimed"),
     RIFTS_CLOSED("Rifts closed"),
     RIFTS_SEARCHES("Rifts searches"),
+    RUMOURS_COMPLETED("Rumours Completed"),
     SARACHNIS_KILLS("Sarachnis kills"),
     SCORPIA_KILLS("Scorpia kills"),
     SCURRIUS_KILLS("Scurrius kills"),
     SKOTIZO_KILLS("Skotizo kills"),
+    SOL_HEREDIT_KILLS("Sol Heredit kills"),
     SPINDEL_KILLS("Spindel kills"),
     SPOILS_OF_WAR_OPENED("Spoils of war opened"),
     SWORDS_CREATED("Swords created"),
@@ -94,6 +98,16 @@ public enum LogItemSourceInfo {
 
     public String getName() {
         return name;
+    }
+
+    public static LogItemSourceInfo findByName(String logItemSourceName) {
+        for(LogItemSourceInfo e: LogItemSourceInfo.values()) {
+            if(e.name.equalsIgnoreCase(logItemSourceName)) {
+                return e;
+            }
+        }
+        // not found
+        return null;
     }
 
 }
