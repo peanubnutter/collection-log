@@ -36,8 +36,13 @@ public interface CollectionLogLuckConfig extends Config
 	String KQ_KC_PRE_D_PICK_BUFF_KEY = "kq_kc_pre_d_pick_buff";
 	String KBD_KC_PRE_D_PICK_BUFF_KEY = "kbd_kc_pre_d_pick_buff";
 
+	String HIDE_PERSONAL_LUCK_CALCULATION_KEY = "hide_personal_luck_calculation";
+	String SHOW_LUCK_TEXT_ON_COLLECTION_LOG_KEY = "show_luck_text_on_collection_log";
+	String SHOW_LUCK_BACKGROUND_ON_COLLECTION_LOG_KEY = "show_luck_background_on_collection_log";
+	String REPLACE_PERCENTILE_WITH_DRYCALC_NUMBER_KEY = "replace_percentile_with_drycalc_number";
+
 	// Used in GET request to collectionlog.net. Should be up-to-date with collection log plugin updates.
-	String COLLECTION_LOG_VERSION = "3.1.2";
+	String COLLECTION_LOG_VERSION = "3.1.3";
 
 	@ConfigSection(
 		name = "Appearance",
@@ -49,7 +54,7 @@ public interface CollectionLogLuckConfig extends Config
 	// Other players' luck will always show, for example though the !luck command, but the player may want to hide
 	// their own luck because it could be unpleasant to see.
 	@ConfigItem(
-			keyName = "hide_personal_luck_calculation",
+			keyName = HIDE_PERSONAL_LUCK_CALCULATION_KEY,
 			name = "Hide personal luck",
 			description = "Hide your luck stats from yourself. Others can still see your chat commands.",
 			position = 1,
@@ -61,7 +66,7 @@ public interface CollectionLogLuckConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "show_luck_text_on_collection_log",
+			keyName = SHOW_LUCK_TEXT_ON_COLLECTION_LOG_KEY,
 			name = "Show collection log luck percentile",
 			description = "Whether to show your luck percentile on the collection log page.",
 			position = 3,
@@ -73,7 +78,7 @@ public interface CollectionLogLuckConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "show_luck_background_on_collection_log",
+			keyName = SHOW_LUCK_BACKGROUND_ON_COLLECTION_LOG_KEY,
 			name = "Show collection log background colors",
 			description = "Whether to show your luck percentile as a background color the collection log page.",
 			position = 4,
@@ -85,7 +90,7 @@ public interface CollectionLogLuckConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "replace_percentile_with_drycalc_number",
+			keyName = REPLACE_PERCENTILE_WITH_DRYCALC_NUMBER_KEY,
 			name = "Replace percentile with DryCalc #",
 			description = "Show DryCalc number (% chance of having your # of drops or fewer) rather than percentile",
 			position = 5,
