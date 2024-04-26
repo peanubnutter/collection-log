@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-// All 1488 collection log items as of 11/26/2023 and a mapping to their item IDs and drop mechanics / probabilities.
+// All 1520 collection log items as of 4/25/2024 and a mapping to their item IDs and drop mechanics / probabilities.
 public class LogItemInfo {
 
     // case-insensitive map, just in case
@@ -3941,6 +3941,64 @@ public class LogItemInfo {
     public static LogItemInfo STURDY_BEEHIVE_PARTS_28674 = new LogItemInfo("Sturdy beehive parts", 28674,
             new MissingKillCountDrop());
     public static LogItemInfo ZOMBIE_AXE_28813 = new LogItemInfo("Broken zombie axe", 28813,
+            new MissingKillCountDrop());
+    public static LogItemInfo SMOL_HEREDIT_28960 = new LogItemInfo("Smol heredit", 28960,
+            new UnimplementedDrop());
+    public static LogItemInfo DIZANAS_QUIVER_UNCHARGED_28947 = new LogItemInfo("Dizana's quiver (uncharged)", 28947,
+            new DeterministicDrop());
+    public static LogItemInfo SUNFIRE_FANATIC_CUIRASS_28936 = new LogItemInfo("Sunfire fanatic cuirass", 28936,
+            new MissingKillCountDrop());
+    public static LogItemInfo SUNFIRE_FANATIC_CHAUSSES_28939 = new LogItemInfo("Sunfire fanatic chausses", 28939,
+            new MissingKillCountDrop());
+    public static LogItemInfo SUNFIRE_FANATIC_HELM_28933 = new LogItemInfo("Sunfire fanatic helm", 28933,
+            new MissingKillCountDrop());
+    public static LogItemInfo ECHO_CRYSTAL_28942 = new LogItemInfo("Echo crystal", 28942,
+            new MissingKillCountDrop());
+    public static LogItemInfo TONALZTICS_OF_RALOS_UNCHARGED_28919 = new LogItemInfo("Tonalztics of ralos (uncharged)", 28919,
+            new MissingKillCountDrop());
+    public static LogItemInfo SUNFIRE_SPLINTERS_28924 = new LogItemInfo("Sunfire splinters", 28924,
+            new MissingKillCountDrop());
+    public static LogItemInfo ECLIPSE_MOON_CHESTPLATE_29004 = new LogItemInfo("Eclipse moon chestplate", 29004,
+            new UnimplementedDrop());
+    public static LogItemInfo ECLIPSE_MOON_TASSETS_29007 = new LogItemInfo("Eclipse moon tassets", 29007,
+            new UnimplementedDrop());
+    public static LogItemInfo ECLIPSE_MOON_HELM_29010 = new LogItemInfo("Eclipse moon helm", 29010,
+            new UnimplementedDrop());
+    public static LogItemInfo ECLIPSE_ATLATL_29000 = new LogItemInfo("Eclipse atlatl", 29000,
+            new UnimplementedDrop());
+    public static LogItemInfo BLUE_MOON_CHESTPLATE_29013 = new LogItemInfo("Blue moon chestplate", 29013,
+            new UnimplementedDrop());
+    public static LogItemInfo BLUE_MOON_TASSETS_29016 = new LogItemInfo("Blue moon tassets", 29016,
+            new UnimplementedDrop());
+    public static LogItemInfo BLUE_MOON_HELM_29019 = new LogItemInfo("Blue moon helm", 29019,
+            new UnimplementedDrop());
+    public static LogItemInfo BLUE_MOON_SPEAR_28988 = new LogItemInfo("Blue moon spear", 28988,
+            new UnimplementedDrop());
+    public static LogItemInfo BLOOD_MOON_CHESTPLATE_29022 = new LogItemInfo("Blood moon chestplate", 29022,
+            new UnimplementedDrop());
+    public static LogItemInfo BLOOD_MOON_TASSETS_29025 = new LogItemInfo("Blood moon tassets", 29025,
+            new UnimplementedDrop());
+    public static LogItemInfo BLOOD_MOON_HELM_29028 = new LogItemInfo("Blood moon helm", 29028,
+            new UnimplementedDrop());
+    public static LogItemInfo DUAL_MACUAHUITL_28997 = new LogItemInfo("Dual macuahuitl", 28997,
+            new UnimplementedDrop());
+    public static LogItemInfo ATLATL_DART_28991 = new LogItemInfo("Atlatl dart", 28991,
+            new UnimplementedDrop());
+    public static LogItemInfo QUETZIN_28962 = new LogItemInfo("Quetzin", 28962,
+            new MissingKillCountDrop());
+    public static LogItemInfo HUNTSMANS_KIT_29309 = new LogItemInfo("Huntsman's kit", 29309,
+            new MissingKillCountDrop());
+    public static LogItemInfo GUILD_HUNTER_HEADWEAR_29263 = new LogItemInfo("Guild hunter headwear", 29263,
+            new MissingKillCountDrop());
+    public static LogItemInfo GUILD_HUNTER_TOP_29265 = new LogItemInfo("Guild hunter top", 29265,
+            new MissingKillCountDrop());
+    public static LogItemInfo GUILD_HUNTER_LEGS_29267 = new LogItemInfo("Guild hunter legs", 29267,
+            new MissingKillCountDrop());
+    public static LogItemInfo GUILD_HUNTER_BOOTS_29269 = new LogItemInfo("Guild hunter boots", 29269,
+            new MissingKillCountDrop());
+    public static LogItemInfo SULPHUR_BLADES_29084 = new LogItemInfo("Sulphur blades", 29084,
+            new MissingKillCountDrop());
+    public static LogItemInfo TELEPORT_ANCHORING_SCROLL_29455 = new LogItemInfo("Teleport anchoring scroll", 29455,
             new MissingKillCountDrop());
 
     private final String itemName;
