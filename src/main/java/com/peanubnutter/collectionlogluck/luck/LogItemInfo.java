@@ -4000,6 +4000,12 @@ public class LogItemInfo {
             new MissingKillCountDrop());
     public static LogItemInfo TELEPORT_ANCHORING_SCROLL_29455 = new LogItemInfo("Teleport anchoring scroll", 29455,
             new MissingKillCountDrop());
+    public static LogItemInfo BRIMHAVEN_VOUCHER_29482 = new LogItemInfo("Brimhaven voucher", 29482,
+            new DeterministicDrop());
+    public static LogItemInfo TORMENTED_SYNAPSE_29580 = new LogItemInfo("Tormented synapse", 29580,
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 499)));
+    public static LogItemInfo BONE_CLAW_29574 = new LogItemInfo("Bone claw", 29574,
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 625)));
 
     private final String itemName;
     private final int itemId;
