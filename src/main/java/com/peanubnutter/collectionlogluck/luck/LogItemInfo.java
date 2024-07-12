@@ -30,9 +30,9 @@ public class LogItemInfo {
             new DeterministicDrop()),
         ...GILDED_2H_SWORD_20155 = new LogItemInfo("Gilded 2h sword", 20155,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             ))),
         ...KEY_MASTER_TELEPORT_13249 = new LogItemInfo("Key master teleport", 13249,
             new FixedStackDrop(new RollInfo(LogItemSourceInfo.CERBERUS_KILLS, 1.0 / 64), 3)),
@@ -196,11 +196,11 @@ public class LogItemInfo {
             new MissingKillCountDrop());
     public static LogItemInfo ANCIENT_BLESSING_20235 = new LogItemInfo("Ancient blessing", 20235,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160, 3)
             )));
     public static LogItemInfo ANCIENT_BRACERS_12490 = new LogItemInfo("Ancient bracers", 12490,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 1625, 5)));
@@ -314,35 +314,35 @@ public class LogItemInfo {
             new MissingKillCountDrop());
     public static LogItemInfo ANCIENT_PAGE_1_12621 = new LogItemInfo("Ancient page 1", 12621,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ANCIENT_PAGE_2_12622 = new LogItemInfo("Ancient page 2", 12622,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ANCIENT_PAGE_3_12623 = new LogItemInfo("Ancient page 3", 12623,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ANCIENT_PAGE_4_12624 = new LogItemInfo("Ancient page 4", 12624,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ANCIENT_PLATEBODY_12460 = new LogItemInfo("Ancient platebody", 12460,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 1625, 5)));
@@ -450,35 +450,35 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 1133, 4)));
     public static LogItemInfo ARMADYL_PAGE_1_12617 = new LogItemInfo("Armadyl page 1", 12617,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ARMADYL_PAGE_2_12618 = new LogItemInfo("Armadyl page 2", 12618,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ARMADYL_PAGE_3_12619 = new LogItemInfo("Armadyl page 3", 12619,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ARMADYL_PAGE_4_12620 = new LogItemInfo("Armadyl page 4", 12620,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ARMADYL_PLATEBODY_12470 = new LogItemInfo("Armadyl platebody", 12470,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 1625, 5)));
@@ -566,35 +566,35 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 1133, 4)));
     public static LogItemInfo BANDOS_PAGE_1_12613 = new LogItemInfo("Bandos page 1", 12613,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo BANDOS_PAGE_2_12614 = new LogItemInfo("Bandos page 2", 12614,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo BANDOS_PAGE_3_12615 = new LogItemInfo("Bandos page 3", 12615,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo BANDOS_PAGE_4_12616 = new LogItemInfo("Bandos page 4", 12616,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo BANDOS_PLATEBODY_12480 = new LogItemInfo("Bandos platebody", 12480,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 1625, 5)));
@@ -721,8 +721,8 @@ public class LogItemInfo {
             new DeterministicDrop());
     public static LogItemInfo BLACK_PICKAXE_12297 = new LogItemInfo("Black pickaxe", 12297,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 36),
-                    new RollInfo(LogItemSourceInfo.BEGINNER_CLUES_COMPLETED, 1.0 / 805.1)
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 36, 3),
+                    new RollInfo(LogItemSourceInfo.BEGINNER_CLUES_COMPLETED, 1.0 / 805.1, 2)
             )));
     public static LogItemInfo BLACK_PLATEBODY_G_2591 = new LogItemInfo("Black platebody (g)", 2591,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 1404, 3)));
@@ -1532,116 +1532,116 @@ public class LogItemInfo {
             new MissingKillCountDrop());
     public static LogItemInfo GILDED_2H_SWORD_20155 = new LogItemInfo("Gilded 2h sword", 20155,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GILDED_AXE_23279 = new LogItemInfo("Gilded axe", 23279,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616, 6)
             )));
     public static LogItemInfo GILDED_BOOTS_12391 = new LogItemInfo("Gilded boots", 12391,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616, 6)
             )));
     public static LogItemInfo GILDED_CHAINBODY_20149 = new LogItemInfo("Gilded chainbody", 20149,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GILDED_COIF_23258 = new LogItemInfo("Gilded coif", 23258,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616, 6)
             )));
     public static LogItemInfo GILDED_DHIDE_BODY_23264 = new LogItemInfo("Gilded d'hide body", 23264,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616, 6)
             )));
     public static LogItemInfo GILDED_DHIDE_CHAPS_23267 = new LogItemInfo("Gilded d'hide chaps", 23267,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616, 6)
             )));
     public static LogItemInfo GILDED_DHIDE_VAMBRACES_23261 = new LogItemInfo("Gilded d'hide vambraces", 23261,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616, 6)
             )));
     public static LogItemInfo GILDED_FULL_HELM_3486 = new LogItemInfo("Gilded full helm", 3486,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GILDED_HASTA_20161 = new LogItemInfo("Gilded hasta", 20161,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GILDED_KITESHIELD_3488 = new LogItemInfo("Gilded kiteshield", 3488,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GILDED_MED_HELM_20146 = new LogItemInfo("Gilded med helm", 20146,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GILDED_PICKAXE_23276 = new LogItemInfo("Gilded pickaxe", 23276,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616, 6)
             )));
     public static LogItemInfo GILDED_PLATEBODY_3481 = new LogItemInfo("Gilded platebody", 3481,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GILDED_PLATELEGS_3483 = new LogItemInfo("Gilded platelegs", 3483,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GILDED_PLATESKIRT_3485 = new LogItemInfo("Gilded plateskirt", 3485,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GILDED_SCIMITAR_12389 = new LogItemInfo("Gilded scimitar", 12389,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616, 6)
             )));
     public static LogItemInfo GILDED_SMILE_FLAG_8967 = new LogItemInfo("Gilded smile flag", 8967,
             new DeterministicDrop());
     public static LogItemInfo GILDED_SPADE_23282 = new LogItemInfo("Gilded spade", 23282,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 14_663, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13_616, 6)
             )));
     public static LogItemInfo GILDED_SPEAR_20158 = new LogItemInfo("Gilded spear", 20158,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GILDED_SQ_SHIELD_20152 = new LogItemInfo("Gilded sq shield", 20152,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776)
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 35_750, 5),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 32_258, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 149_776, 6)
             )));
     public static LogItemInfo GLOVES_OF_DARKNESS_20134 = new LogItemInfo("Gloves of darkness", 20134,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 851, 6)));
@@ -1850,35 +1850,35 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 1133, 4)));
     public static LogItemInfo GUTHIX_PAGE_1_3835 = new LogItemInfo("Guthix page 1", 3835,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo GUTHIX_PAGE_2_3836 = new LogItemInfo("Guthix page 2", 3836,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo GUTHIX_PAGE_3_3837 = new LogItemInfo("Guthix page 3", 3837,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo GUTHIX_PAGE_4_3838 = new LogItemInfo("Guthix page 4", 3838,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo GUTHIX_PLATEBODY_2669 = new LogItemInfo("Guthix platebody", 2669,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 1625, 5)));
@@ -1955,11 +1955,11 @@ public class LogItemInfo {
             new MissingKillCountDrop());
     public static LogItemInfo HOLY_BLESSING_20220 = new LogItemInfo("Holy blessing", 20220,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160, 3)
             )));
     public static LogItemInfo HOLY_ELIXIR_12833 = new LogItemInfo("Holy elixir", 12833,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.CORPOREAL_BEAST_KILLS, 3.0 / 512)));
@@ -1972,11 +1972,11 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 1275, 5)));
     public static LogItemInfo HONOURABLE_BLESSING_20229 = new LogItemInfo("Honourable blessing", 20229,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160, 3)
             )));
     public static LogItemInfo HOOD_OF_DARKNESS_20128 = new LogItemInfo("Hood of darkness", 20128,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 851, 6)));
@@ -2424,11 +2424,11 @@ public class LogItemInfo {
     );
     public static LogItemInfo MASTER_SCROLL_BOOK_EMPTY_21387 = new LogItemInfo("Master scroll book (empty)", 21387,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 333.5),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 355.2),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 595.8),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 750.2),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 792)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 333.5, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 355.2, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 595.8, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 750.2, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 792, 3)
             )));
     public static LogItemInfo MASTER_WAND_6914 = new LogItemInfo("Master wand", 6914,
             new DeterministicDrop());
@@ -2671,11 +2671,11 @@ public class LogItemInfo {
             new MissingKillCountDrop());
     public static LogItemInfo PEACEFUL_BLESSING_20226 = new LogItemInfo("Peaceful blessing", 20226,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160, 3)
             )));
     public static LogItemInfo PEARL_BARBARIAN_ROD_22842 = new LogItemInfo("Pearl barbarian rod", 22842,
             new DeterministicDrop());
@@ -3062,35 +3062,35 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 1133, 4)));
     public static LogItemInfo SARADOMIN_PAGE_1_3827 = new LogItemInfo("Saradomin page 1", 3827,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo SARADOMIN_PAGE_2_3828 = new LogItemInfo("Saradomin page 2", 3828,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo SARADOMIN_PAGE_3_3829 = new LogItemInfo("Saradomin page 3", 3829,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo SARADOMIN_PAGE_4_3830 = new LogItemInfo("Saradomin page 4", 3830,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo SARADOMIN_PLATEBODY_2661 = new LogItemInfo("Saradomin platebody", 2661,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 1625, 5)));
@@ -3509,11 +3509,11 @@ public class LogItemInfo {
             new MissingKillCountDrop());
     public static LogItemInfo UNHOLY_BLESSING_20223 = new LogItemInfo("Unholy blessing", 20223,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160, 3)
             )));
     public static LogItemInfo UNSIRED_25624 = new LogItemInfo("Unsired", 25624,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.ABYSSAL_SIRE_KILLS, 1.0 / 100)));
@@ -3644,11 +3644,11 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.DAGANNOTH_REX_KILLS, 1.0 / 128)));
     public static LogItemInfo WAR_BLESSING_20232 = new LogItemInfo("War blessing", 20232,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 606.4, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 645.8, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 541.7, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 682, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 2160, 3)
             )));
     public static LogItemInfo WHITE_BERET_2637 = new LogItemInfo("White beret", 2637,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 1404, 3)));
@@ -3742,35 +3742,35 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 1133, 4)));
     public static LogItemInfo ZAMORAK_PAGE_1_3831 = new LogItemInfo("Zamorak page 1", 3831,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ZAMORAK_PAGE_2_3832 = new LogItemInfo("Zamorak page 2", 3832,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ZAMORAK_PAGE_3_3833 = new LogItemInfo("Zamorak page 3", 3833,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ZAMORAK_PAGE_4_3834 = new LogItemInfo("Zamorak page 4", 3834,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6),
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775),
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650),
-                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4),
-                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864)
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 702.6, 6),
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 775, 5),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 650, 5),
+                    new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 818.4, 4),
+                    new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 864, 3)
             )));
     public static LogItemInfo ZAMORAK_PLATEBODY_2653 = new LogItemInfo("Zamorak platebody", 2653,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 1625, 5)));
@@ -3823,154 +3823,154 @@ public class LogItemInfo {
             new FixedStackDrop(new RollInfo(LogItemSourceInfo.ZULRAH_KILLS, 1.0 / 16.53, 2), 4));
     public static LogItemInfo THIRD_AGE_AMULET_10344 = new LogItemInfo("3rd age amulet", 10344,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_AXE_20011 = new LogItemInfo("3rd age axe", 20011,
             new PoissonBinomialDrop(ImmutableList.of(
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_BOW_12424 = new LogItemInfo("3rd age bow", 12424,
             new PoissonBinomialDrop(ImmutableList.of(
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_CLOAK_12437 = new LogItemInfo("3rd age cloak", 12437,
             new PoissonBinomialDrop(ImmutableList.of(
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_DRUIDIC_CLOAK_23345 = new LogItemInfo("3rd age druidic cloak", 23345,
             new PoissonBinomialDrop(ImmutableList.of(
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_DRUIDIC_ROBE_BOTTOMS_23339 = new LogItemInfo("3rd age druidic robe bottoms", 23339,
             new PoissonBinomialDrop(ImmutableList.of(
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_DRUIDIC_ROBE_TOP_23336 = new LogItemInfo("3rd age druidic robe top", 23336,
             new PoissonBinomialDrop(ImmutableList.of(
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_DRUIDIC_STAFF_23342 = new LogItemInfo("3rd age druidic staff", 23342,
             new PoissonBinomialDrop(ImmutableList.of(
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_FULL_HELMET_10350 = new LogItemInfo("3rd age full helmet", 10350,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_KITESHIELD_10352 = new LogItemInfo("3rd age kiteshield", 10352,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_LONGSWORD_12426 = new LogItemInfo("3rd age longsword", 12426,
             new PoissonBinomialDrop(ImmutableList.of(
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_MAGE_HAT_10342 = new LogItemInfo("3rd age mage hat", 10342,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_PICKAXE_20014 = new LogItemInfo("3rd age pickaxe", 20014,
             new PoissonBinomialDrop(ImmutableList.of(
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_PLATEBODY_10348 = new LogItemInfo("3rd age platebody", 10348,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_PLATELEGS_10346 = new LogItemInfo("3rd age platelegs", 10346,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_PLATESKIRT_23242 = new LogItemInfo("3rd age plateskirt", 23242,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_RANGE_COIF_10334 = new LogItemInfo("3rd age range coif", 10334,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_RANGE_LEGS_10332 = new LogItemInfo("3rd age range legs", 10332,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_RANGE_TOP_10330 = new LogItemInfo("3rd age range top", 10330,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_ROBE_10340 = new LogItemInfo("3rd age robe", 10340,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_ROBE_TOP_10338 = new LogItemInfo("3rd age robe top", 10338,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_VAMBRACES_10336 = new LogItemInfo("3rd age vambraces", 10336,
             new PoissonBinomialDrop(ImmutableList.of(
-                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250),
+                    new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 211_250, 5),
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo THIRD_AGE_WAND_12422 = new LogItemInfo("3rd age wand", 12422,
             new PoissonBinomialDrop(ImmutableList.of(
                     // assumes players immediately kill the Mimic, and do so on the first try
-                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262),
-                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168)
+                    new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 35.0 / 5750 + 1.0 / 249_262, 5),
+                    new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 15.0 / 5244 + 1.0 / 313_168, 6)
             )));
     public static LogItemInfo VETION_JR_13179 = new LogItemInfo("Vet'ion jr.", 13179,
             new PoissonBinomialDrop(ImmutableList.of(
