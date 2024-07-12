@@ -33,16 +33,6 @@ public abstract class AbstractDrop implements DropLuck {
             throw new IllegalArgumentException("At least one RollInfo is required.");
         }
 
-        // the number of rolls per source and the drop rate per source cannot both be non-uniform across all drops,
-        // otherwise it's impossible to tell which (different) drop rate led to the success, and luck cannot be
-        // calculated
-        boolean hasNonUniformDropChances = rollInfos.stream().mapToDouble(RollInfo::getDropChancePerRoll).distinct().count() != 1;
-        boolean hasNonUniformRollsPerKc = rollInfos.stream().mapToInt(RollInfo::getRollsPerKc).distinct().count() != 1;
-        if (hasNonUniformDropChances && hasNonUniformRollsPerKc) {
-            throw new IllegalArgumentException("Probabilities for multiple drop sources cannot be unequal while having " +
-                    "a different number of rolls per drop source.");
-        }
-
         this.configOptions = new ArrayList<>();
     }
 
