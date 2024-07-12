@@ -5,9 +5,13 @@ import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigSection;
 
-@ConfigGroup("collectionlogluck")
+import static com.peanubnutter.collectionlogluck.CollectionLogLuckConfig.COLLECTION_LOG_LUCK_CONFIG_GROUP;
+
+@ConfigGroup(COLLECTION_LOG_LUCK_CONFIG_GROUP)
 public interface CollectionLogLuckConfig extends Config
 {
+	String COLLECTION_LOG_LUCK_CONFIG_GROUP = "collectionlogluck";
+	String COLLECTION_LOG_LUCK_CONFIG_VERSION_KEY = "collection_log_luck_version";
 
 	String NUM_INVALID_BARROWS_KC_KEY = "num_invalid_barrows_kc";
 	String BARROWS_BOLT_RACKS_ENABLED_KEY = "barrows_bolt_racks_enabled";
@@ -35,7 +39,10 @@ public interface CollectionLogLuckConfig extends Config
 	String SKOTIZO_KC_PRE_BUFF_KEY = "skotizo_kc_pre_buff";
 	String KQ_KC_PRE_D_PICK_BUFF_KEY = "kq_kc_pre_d_pick_buff";
 	String KBD_KC_PRE_D_PICK_BUFF_KEY = "kbd_kc_pre_d_pick_buff";
+	String NIGHTMARE_KC_PRE_BUFF_KEY = "nightmare_kc_pre_buff";
+	String PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY = "phosanis_nightmare_kc_pre_buff";
 
+	String SHOW_PLUGIN_UPDATES_KEY = "show_plugin_updates";
 	String HIDE_PERSONAL_LUCK_CALCULATION_KEY = "hide_personal_luck_calculation";
 	String SHOW_LUCK_TEXT_ON_COLLECTION_LOG_KEY = "show_luck_text_on_collection_log";
 	String SHOW_LUCK_BACKGROUND_ON_COLLECTION_LOG_KEY = "show_luck_background_on_collection_log";
@@ -51,13 +58,26 @@ public interface CollectionLogLuckConfig extends Config
 	)
 	String appearanceSection = "appearance";
 
+	@ConfigItem(
+			keyName = SHOW_PLUGIN_UPDATES_KEY,
+			name = "Show plugin update message",
+			description = "On first login after a plugin update, show an update message in chat.",
+			position = 1,
+			section = appearanceSection
+	)
+	default boolean showPluginUpdates()
+	{
+		return true;
+	}
+
+
 	// Other players' luck will always show, for example though the !luck command, but the player may want to hide
 	// their own luck because it could be unpleasant to see.
 	@ConfigItem(
 			keyName = HIDE_PERSONAL_LUCK_CALCULATION_KEY,
 			name = "Hide personal luck",
 			description = "Hide your luck stats from yourself. Others can still see your chat commands.",
-			position = 1,
+			position = 2,
 			section = appearanceSection
 	)
 	default boolean hidePersonalLuckCalculation()
@@ -139,7 +159,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_PERSONAL_TOB_POINTS_KEY,
 			name = "ToB point fraction",
-			description = "The average fraction of max team points you receive per Theatre of Blood raid, including MVP points.",
+			description = "The average fraction (0 to 1) of max team points you receive per Theatre of Blood raid, including MVP points.",
 			position = 12,
 			section = luckSection
 	)
@@ -151,7 +171,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_PERSONAL_TOB_HM_POINTS_KEY,
 			name = "ToB HM point fraction",
-			description = "The average fraction of max team points you receive per Theatre of Blood Hard Mode raid, including MVP points.",
+			description = "The average fraction (0 to 1) of max team points you receive per Theatre of Blood Hard Mode raid, including MVP points.",
 			position = 13,
 			section = luckSection
 	)
@@ -164,7 +184,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = ENTRY_TOA_UNIQUE_CHANCE_KEY,
 			name = "Entry ToA Unique Chance",
-			description = "Use a plugin/calc to estimate your chance of a unique for your typical raid setup. Defaults to 50 invocation level.",
+			description = "Use a plugin/calc to estimate your chance (0 to 1) of a unique for your typical raid setup. Defaults to 50 invocation level.",
 			position = 14,
 			section = luckSection
 	)
@@ -176,7 +196,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = REGULAR_TOA_UNIQUE_CHANCE_KEY,
 			name = "Regular ToA Unique Chance",
-			description = "Use a plugin/calc to estimate your chance of a unique for your typical raid setup. Defaults to 150 invocation level.",
+			description = "Use a plugin/calc to estimate your chance (0 to 1) of a unique for your typical raid setup. Defaults to 150 invocation level.",
 			position = 15,
 			section = luckSection
 	)
@@ -188,7 +208,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = EXPERT_TOA_UNIQUE_CHANCE_KEY,
 			name = "Expert ToA Unique Chance",
-			description = "Use a plugin/calc to estimate your chance of a unique for your typical raid setup. Defaults to 300 invocation level.",
+			description = "Use a plugin/calc to estimate your chance (0 to 1) of a unique for your typical raid setup. Defaults to 300 invocation level.",
 			position = 16,
 			section = luckSection
 	)
@@ -213,7 +233,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_NIGHTMARE_REWARDS_FRACTION_KEY,
 			name = "Nightmare rewards fraction",
-			description = "Avg. fraction of contribution to killing The Nightmare of Ashihama." +
+			description = "Avg. fraction (0 to 1) of contribution to killing The Nightmare of Ashihama." +
 					" This should include MVP bonuses, so multiply by 1.05 if always MVP, or less accordingly.",
 			position = 21,
 			section = luckSection
@@ -226,7 +246,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_NEX_REWARDS_FRACTION_KEY,
 			name = "Nex rewards fraction",
-			description = "Avg. fraction of contribution to killing Nex." +
+			description = "Avg. fraction (0 to 1) of contribution to killing Nex." +
 					" This should include MVP bonuses, so multiply by 1.1 if always MVP, or less accordingly.",
 			position = 22,
 			section = luckSection
@@ -239,7 +259,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_CALLISTO_REWARDS_FRACTION_KEY,
 			name = "Callisto rewards fraction",
-			description = "Avg. fraction of contribution to killing Callisto." +
+			description = "Avg. fraction (0 to 1) of contribution to killing Callisto." +
 					" Set to 0.1 if team size >= 10, or 1 if soloing.",
 			position = 23,
 			section = luckSection
@@ -251,7 +271,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_VENENATIS_REWARDS_FRACTION_KEY,
 			name = "Venenatis rewards fraction",
-			description = "Avg. fraction of contribution to killing Venenatis." +
+			description = "Avg. fraction (0 to 1) of contribution to killing Venenatis." +
 					" Set to 0.1 if team size >= 10, or 1 if soloing.",
 			position = 24,
 			section = luckSection
@@ -263,7 +283,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_VETION_REWARDS_FRACTION_KEY,
 			name = "Vet'ion rewards fraction",
-			description = "Avg. fraction of contribution to killing Vet'ion." +
+			description = "Avg. fraction (0 to 1) of contribution to killing Vet'ion." +
 					" Set to 0.1 if team size >= 10, or 1 if soloing.",
 			position = 25,
 			section = luckSection
@@ -275,7 +295,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_SCURRIUS_MVP_RATE_KEY,
 			name = "Scurrius MVP rate",
-			description = "Fraction of the time you are MVP while fighting Scurrius. Set to 1 if you always solo.",
+			description = "Fraction (0 to 1) of the time you are MVP while fighting Scurrius. Set to 1 if you always solo.",
 			position = 26,
 			section = luckSection
 	)
@@ -287,7 +307,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_ZALCANO_REWARDS_FRACTION_KEY,
 			name = "Zalcano rewards fraction",
-			description = "Avg. fraction of contribution to killing Zalcano, taking into account team size.",
+			description = "Avg. fraction (0 to 1) of contribution to killing Zalcano, taking into account team size.",
 			position = 27,
 			section = luckSection
 	)
@@ -313,7 +333,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = NUM_ROLLS_PER_WINTERTODT_CRATE_KEY,
 			name = "# Wintertodt Rolls",
-			description = "The number of rolls per Wintertodt supply crate. 500 pts = 2 rolls. 1k pts = 3 rolls, and so on",
+			description = "The number of rolls per Wintertodt supply crate. 500 pts = 2 rolls. 1k pts = 3 rolls, and so on. Can be a decimal.",
 			position = 30,
 			section = luckSection
 	)
@@ -436,5 +456,45 @@ public interface CollectionLogLuckConfig extends Config
 	default int kbdKcPreDPickBuff() {
 		return 0;
 	}
+
+	@ConfigItem(
+			keyName = NIGHTMARE_KC_PRE_BUFF_KEY,
+			name = "Nightmare KC pre-buff",
+			description = "# of Nightmare kills before the drop rate buffs.",
+			position = 53,
+			section = luckSection
+	)
+	default int nightmareKcPreBuff() {
+		return 0;
+	}
+
+	@ConfigItem(
+			keyName = PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY,
+			name = "Phosani's Nightmare KC pre-buff",
+			description = "# of Phosani's Nightmare kills before the drop rate buffs.",
+			position = 54,
+			section = luckSection
+	)
+	default int phosanisNightmareKcPreBuff() {
+		return 0;
+	}
+
+	// ############### Hidden settings ###############
+
+	@ConfigSection(
+			name = "Debug",
+			description = "Internal plugin state and hidden settings",
+			position = 99,
+			closedByDefault = true
+	)
+	String debugSection = "debug";
+
+	@ConfigItem(
+			keyName = COLLECTION_LOG_LUCK_CONFIG_VERSION_KEY,
+			name = "Collection Log Luck plugin version",
+			description = "Version of the plugin for update message",
+			section = debugSection,
+			position = 1
+	) default String getVersion() { return ""; }
 
 }

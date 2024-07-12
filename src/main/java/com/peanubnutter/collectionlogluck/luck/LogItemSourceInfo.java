@@ -76,6 +76,7 @@ public enum LogItemSourceInfo {
     TOMBS_OF_AMASCUT_COMPLETIONS("Tombs of Amascut completions"),
     TOMBS_OF_AMASCUT_ENTRY_COMPLETIONS("Tombs of Amascut (Entry) completions"),
     TOMBS_OF_AMASCUT_EXPERT_COMPLETIONS("Tombs of Amascut (Expert) completions"),
+    TORMENTED_DEMON_KILLS("Tormented Demon kills"),
     TORTURED_GORILLA_KILLS("Tortured Gorilla kills"),
     TOTAL_CLUES_COMPLETED("Total clues completed"),
     TZKAL_ZUK_KILLS("TzKal-Zuk kills"),

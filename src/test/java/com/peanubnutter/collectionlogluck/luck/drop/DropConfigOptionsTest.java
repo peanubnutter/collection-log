@@ -25,7 +25,7 @@ public class DropConfigOptionsTest {
         CollectionLogItem item = new CollectionLogItem(1234, "an item", 1, true, 3);
 
         assertThat(drop.getIncalculableReason(item, null),
-                CoreMatchers.containsString("only available for your own character"));
+                CoreMatchers.containsString("Collection Log Luck plugin does not support calculating another player's luck for an item"));
     }
 
     @Test
