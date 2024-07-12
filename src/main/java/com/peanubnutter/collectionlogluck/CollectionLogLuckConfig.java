@@ -141,7 +141,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_PERSONAL_TOB_POINTS_KEY,
 			name = "ToB point fraction",
-			description = "The average fraction of max team points you receive per Theatre of Blood raid, including MVP points.",
+			description = "The average fraction (0 to 1) of max team points you receive per Theatre of Blood raid, including MVP points.",
 			position = 12,
 			section = luckSection
 	)
@@ -153,7 +153,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_PERSONAL_TOB_HM_POINTS_KEY,
 			name = "ToB HM point fraction",
-			description = "The average fraction of max team points you receive per Theatre of Blood Hard Mode raid, including MVP points.",
+			description = "The average fraction (0 to 1) of max team points you receive per Theatre of Blood Hard Mode raid, including MVP points.",
 			position = 13,
 			section = luckSection
 	)
@@ -166,7 +166,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = ENTRY_TOA_UNIQUE_CHANCE_KEY,
 			name = "Entry ToA Unique Chance",
-			description = "Use a plugin/calc to estimate your chance of a unique for your typical raid setup. Defaults to 50 invocation level.",
+			description = "Use a plugin/calc to estimate your chance (0 to 1) of a unique for your typical raid setup. Defaults to 50 invocation level.",
 			position = 14,
 			section = luckSection
 	)
@@ -178,7 +178,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = REGULAR_TOA_UNIQUE_CHANCE_KEY,
 			name = "Regular ToA Unique Chance",
-			description = "Use a plugin/calc to estimate your chance of a unique for your typical raid setup. Defaults to 150 invocation level.",
+			description = "Use a plugin/calc to estimate your chance (0 to 1) of a unique for your typical raid setup. Defaults to 150 invocation level.",
 			position = 15,
 			section = luckSection
 	)
@@ -190,7 +190,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = EXPERT_TOA_UNIQUE_CHANCE_KEY,
 			name = "Expert ToA Unique Chance",
-			description = "Use a plugin/calc to estimate your chance of a unique for your typical raid setup. Defaults to 300 invocation level.",
+			description = "Use a plugin/calc to estimate your chance (0 to 1) of a unique for your typical raid setup. Defaults to 300 invocation level.",
 			position = 16,
 			section = luckSection
 	)
@@ -215,7 +215,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_NIGHTMARE_REWARDS_FRACTION_KEY,
 			name = "Nightmare rewards fraction",
-			description = "Avg. fraction of contribution to killing The Nightmare of Ashihama." +
+			description = "Avg. fraction (0 to 1) of contribution to killing The Nightmare of Ashihama." +
 					" This should include MVP bonuses, so multiply by 1.05 if always MVP, or less accordingly.",
 			position = 21,
 			section = luckSection
@@ -228,7 +228,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_NEX_REWARDS_FRACTION_KEY,
 			name = "Nex rewards fraction",
-			description = "Avg. fraction of contribution to killing Nex." +
+			description = "Avg. fraction (0 to 1) of contribution to killing Nex." +
 					" This should include MVP bonuses, so multiply by 1.1 if always MVP, or less accordingly.",
 			position = 22,
 			section = luckSection
@@ -241,7 +241,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_CALLISTO_REWARDS_FRACTION_KEY,
 			name = "Callisto rewards fraction",
-			description = "Avg. fraction of contribution to killing Callisto." +
+			description = "Avg. fraction (0 to 1) of contribution to killing Callisto." +
 					" Set to 0.1 if team size >= 10, or 1 if soloing.",
 			position = 23,
 			section = luckSection
@@ -253,7 +253,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_VENENATIS_REWARDS_FRACTION_KEY,
 			name = "Venenatis rewards fraction",
-			description = "Avg. fraction of contribution to killing Venenatis." +
+			description = "Avg. fraction (0 to 1) of contribution to killing Venenatis." +
 					" Set to 0.1 if team size >= 10, or 1 if soloing.",
 			position = 24,
 			section = luckSection
@@ -265,7 +265,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_VETION_REWARDS_FRACTION_KEY,
 			name = "Vet'ion rewards fraction",
-			description = "Avg. fraction of contribution to killing Vet'ion." +
+			description = "Avg. fraction (0 to 1) of contribution to killing Vet'ion." +
 					" Set to 0.1 if team size >= 10, or 1 if soloing.",
 			position = 25,
 			section = luckSection
@@ -277,7 +277,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_SCURRIUS_MVP_RATE_KEY,
 			name = "Scurrius MVP rate",
-			description = "Fraction of the time you are MVP while fighting Scurrius. Set to 1 if you always solo.",
+			description = "Fraction (0 to 1) of the time you are MVP while fighting Scurrius. Set to 1 if you always solo.",
 			position = 26,
 			section = luckSection
 	)
@@ -289,7 +289,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = AVG_ZALCANO_REWARDS_FRACTION_KEY,
 			name = "Zalcano rewards fraction",
-			description = "Avg. fraction of contribution to killing Zalcano, taking into account team size.",
+			description = "Avg. fraction (0 to 1) of contribution to killing Zalcano, taking into account team size.",
 			position = 27,
 			section = luckSection
 	)
@@ -315,7 +315,7 @@ public interface CollectionLogLuckConfig extends Config
 	@ConfigItem(
 			keyName = NUM_ROLLS_PER_WINTERTODT_CRATE_KEY,
 			name = "# Wintertodt Rolls",
-			description = "The number of rolls per Wintertodt supply crate. 500 pts = 2 rolls. 1k pts = 3 rolls, and so on",
+			description = "The number of rolls per Wintertodt supply crate. 500 pts = 2 rolls. 1k pts = 3 rolls, and so on. Can be a decimal.",
 			position = 30,
 			section = luckSection
 	)
