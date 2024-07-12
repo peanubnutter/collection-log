@@ -5,9 +5,13 @@ import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigSection;
 
-@ConfigGroup("collectionlogluck")
+import static com.peanubnutter.collectionlogluck.CollectionLogLuckConfig.COLLECTION_LOG_LUCK_CONFIG_GROUP;
+
+@ConfigGroup(COLLECTION_LOG_LUCK_CONFIG_GROUP)
 public interface CollectionLogLuckConfig extends Config
 {
+	String COLLECTION_LOG_LUCK_CONFIG_GROUP = "collectionlogluck";
+	String COLLECTION_LOG_LUCK_CONFIG_VERSION_KEY = "collection_log_luck_version";
 
 	String NUM_INVALID_BARROWS_KC_KEY = "num_invalid_barrows_kc";
 	String BARROWS_BOLT_RACKS_ENABLED_KEY = "barrows_bolt_racks_enabled";
@@ -38,6 +42,7 @@ public interface CollectionLogLuckConfig extends Config
 	String NIGHTMARE_KC_PRE_BUFF_KEY = "nightmare_kc_pre_buff";
 	String PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY = "phosanis_nightmare_kc_pre_buff";
 
+	String SHOW_PLUGIN_UPDATES_KEY = "show_plugin_updates";
 	String HIDE_PERSONAL_LUCK_CALCULATION_KEY = "hide_personal_luck_calculation";
 	String SHOW_LUCK_TEXT_ON_COLLECTION_LOG_KEY = "show_luck_text_on_collection_log";
 	String SHOW_LUCK_BACKGROUND_ON_COLLECTION_LOG_KEY = "show_luck_background_on_collection_log";
@@ -53,13 +58,26 @@ public interface CollectionLogLuckConfig extends Config
 	)
 	String appearanceSection = "appearance";
 
+	@ConfigItem(
+			keyName = SHOW_PLUGIN_UPDATES_KEY,
+			name = "Show plugin update message",
+			description = "On first login after a plugin update, show an update message in chat.",
+			position = 1,
+			section = appearanceSection
+	)
+	default boolean showPluginUpdates()
+	{
+		return true;
+	}
+
+
 	// Other players' luck will always show, for example though the !luck command, but the player may want to hide
 	// their own luck because it could be unpleasant to see.
 	@ConfigItem(
 			keyName = HIDE_PERSONAL_LUCK_CALCULATION_KEY,
 			name = "Hide personal luck",
 			description = "Hide your luck stats from yourself. Others can still see your chat commands.",
-			position = 1,
+			position = 2,
 			section = appearanceSection
 	)
 	default boolean hidePersonalLuckCalculation()
@@ -461,6 +479,22 @@ public interface CollectionLogLuckConfig extends Config
 		return 0;
 	}
 
+	// ############### Hidden settings ###############
 
+	@ConfigSection(
+			name = "Debug",
+			description = "Internal plugin state and hidden settings",
+			position = 99,
+			closedByDefault = true
+	)
+	String debugSection = "debug";
+
+	@ConfigItem(
+			keyName = COLLECTION_LOG_LUCK_CONFIG_VERSION_KEY,
+			name = "Collection Log Luck plugin version",
+			description = "Version of the plugin for update message",
+			section = debugSection,
+			position = 1
+	) default String getVersion() { return ""; }
 
 }

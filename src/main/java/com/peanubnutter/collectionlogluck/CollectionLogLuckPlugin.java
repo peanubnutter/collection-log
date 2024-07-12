@@ -23,7 +23,9 @@ import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.chat.ChatCommandManager;
+import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.chat.ChatMessageBuilder;
+import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -65,6 +67,12 @@ public class CollectionLogLuckPlugin extends Plugin {
     private static final Pattern COLLECTION_LOG_LUCK_COMMAND_PATTERN = Pattern.compile("!luck\\s*(.+)\\s*", Pattern.CASE_INSENSITIVE);
     private static final String COLLECTION_LOG_LUCK_CONFIG_GROUP = "collectionlogluck";
 
+    private final String pluginVersion = "v1.1.0";
+    private final String pluginMessage = "<colHIGHLIGHT>Collection Log Luck " + pluginVersion + ":<br>" +
+            "<colHIGHLIGHT>* Fixed shared clue items. Visual tweaks.<br>" +
+            "<colHIGHLIGHT>* Support Tormented Demon drops and Nightmare buff settings<br>" +
+            "<colHIGHLIGHT>* This update message can be hidden in settings";
+
     private Map<Integer, Integer> loadedCollectionLogIcons;
 
     // caches collection log per username. Cleared on logout (including hopping worlds).
@@ -85,6 +93,9 @@ public class CollectionLogLuckPlugin extends Plugin {
     private ChatCommandManager chatCommandManager;
 
     @Inject
+    private ChatMessageManager chatMessageManager;
+
+    @Inject
     private CollectionLogLuckConfig config;
 
     @Inject
@@ -98,6 +109,9 @@ public class CollectionLogLuckPlugin extends Plugin {
 
     @Inject
     private OverlayManager overlayManager;
+
+    @Inject
+    private ConfigManager configManager;
 
     @Inject
     private CollectionLogWidgetItemOverlay collectionLogWidgetItemOverlay;
@@ -142,6 +156,24 @@ public class CollectionLogLuckPlugin extends Plugin {
             loadedCollectionLogs.clear();
             luckCalculationResults.clear();
         }
+
+        if (gameStateChanged.getGameState() != GameState.LOGGED_IN) return;
+
+        // Send message about plugin updates one time
+        if (!config.getVersion().equals(pluginVersion)) {
+            configManager.setConfiguration(
+                    CollectionLogLuckConfig.COLLECTION_LOG_LUCK_CONFIG_GROUP,
+                    CollectionLogLuckConfig.COLLECTION_LOG_LUCK_CONFIG_VERSION_KEY,
+                    pluginVersion);
+            if (config.showPluginUpdates()) {
+                chatMessageManager.queue(QueuedMessage.builder()
+                        .type(ChatMessageType.CONSOLE)
+                        .runeLiteFormattedMessage(pluginMessage)
+                        .build()
+                );
+            }
+        }
+
     }
 
     private boolean isValidWorldType() {
