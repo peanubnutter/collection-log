@@ -3,6 +3,7 @@ package com.peanubnutter.collectionlogluck;
 import com.peanubnutter.collectionlogluck.luck.LogItemInfo;
 import com.peanubnutter.collectionlogluck.luck.LuckCalculationResult;
 import com.peanubnutter.collectionlogluck.model.CollectionLogItem;
+import com.peanubnutter.collectionlogluck.util.LuckUtils;
 import net.runelite.api.widgets.InterfaceID;
 import net.runelite.api.widgets.WidgetItem;
 import net.runelite.client.ui.overlay.WidgetItemOverlay;
@@ -71,8 +72,13 @@ public class CollectionLogWidgetItemOverlay extends WidgetItemOverlay {
             if (config.showCollectionLogOverlayText()) {
                 double luckToDisplay = config.replacePercentileWithDrycalcNumber() ?
                          1 - luckCalculationResult.getDryness() : luckCalculationResult.getOverallLuck();
+                int luckDisplayRounded = (int) Math.round(100 * luckToDisplay);
+                // It's too confusing that screenshots display "%" in both calculation modes, so a different symbol
+                // should be used to indicate "percentile". The best I could come up with is "pth" or "th", or "th%"
+                String luckDisplaySymbol = config.replacePercentileWithDrycalcNumber() ? "%" :
+                        LuckUtils.getOrdinalSuffix(luckDisplayRounded);
 
-                String overallLuckText = Math.round(100 * luckToDisplay) + "%";
+                String overallLuckText = Math.round(100 * luckToDisplay) + luckDisplaySymbol;
 
                 // drop shadow
                 graphics.setColor(Color.BLACK);
