@@ -35,6 +35,8 @@ public interface CollectionLogLuckConfig extends Config
 	String SKOTIZO_KC_PRE_BUFF_KEY = "skotizo_kc_pre_buff";
 	String KQ_KC_PRE_D_PICK_BUFF_KEY = "kq_kc_pre_d_pick_buff";
 	String KBD_KC_PRE_D_PICK_BUFF_KEY = "kbd_kc_pre_d_pick_buff";
+	String NIGHTMARE_KC_PRE_BUFF_KEY = "nightmare_kc_pre_buff";
+	String PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY = "phosanis_nightmare_kc_pre_buff";
 
 	String HIDE_PERSONAL_LUCK_CALCULATION_KEY = "hide_personal_luck_calculation";
 	String SHOW_LUCK_TEXT_ON_COLLECTION_LOG_KEY = "show_luck_text_on_collection_log";
@@ -436,5 +438,29 @@ public interface CollectionLogLuckConfig extends Config
 	default int kbdKcPreDPickBuff() {
 		return 0;
 	}
+
+	@ConfigItem(
+			keyName = NIGHTMARE_KC_PRE_BUFF_KEY,
+			name = "Nightmare KC pre-buff",
+			description = "# of Nightmare kills before the drop rate buffs.",
+			position = 53,
+			section = luckSection
+	)
+	default int nightmareKcPreBuff() {
+		return 0;
+	}
+
+	@ConfigItem(
+			keyName = PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY,
+			name = "Phosani's Nightmare KC pre-buff",
+			description = "# of Phosani's Nightmare kills before the drop rate buffs.",
+			position = 54,
+			section = luckSection
+	)
+	default int phosanisNightmareKcPreBuff() {
+		return 0;
+	}
+
+
 
 }

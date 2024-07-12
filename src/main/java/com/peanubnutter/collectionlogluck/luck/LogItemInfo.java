@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-// All 1520 collection log items as of 4/25/2024 and a mapping to their item IDs and drop mechanics / probabilities.
+// All 1523 collection log items as of 7/11/2024 and a mapping to their item IDs and drop mechanics / probabilities.
 public class LogItemInfo {
 
     // case-insensitive map, just in case
@@ -1370,11 +1370,19 @@ public class LogItemInfo {
     );
     public static LogItemInfo ELDRITCH_ORB_24517 = new LogItemInfo("Eldritch orb", 24517,
             new PoissonBinomialDrop(ImmutableList.of(
+                    // pre-buff drop rate
                     new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 1800),
-                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 3000)
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 960),
+                    // pre-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 3000),
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 1600)
             ))
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_TEAM_SIZE_KEY)
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_REWARDS_FRACTION_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.NIGHTMARE_KC_PRE_BUFF_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY)
     );
     public static LogItemInfo ELIDINIS_WARD_25985 = new LogItemInfo("Elidinis' ward", 25985,
             new PoissonBinomialDrop(ImmutableList.of(
@@ -1904,11 +1912,19 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 1404, 3)));
     public static LogItemInfo HARMONISED_ORB_24511 = new LogItemInfo("Harmonised orb", 24511,
             new PoissonBinomialDrop(ImmutableList.of(
+                    // pre-buff drop rate
                     new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 1800),
-                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 3000)
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 960),
+                    // pre-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 3000),
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 1600)
             ))
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_TEAM_SIZE_KEY)
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_REWARDS_FRACTION_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.NIGHTMARE_KC_PRE_BUFF_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY)
     );
     public static LogItemInfo HASTILY_SCRAWLED_NOTE_21678 = new LogItemInfo("Hastily scrawled note", 21678,
             new MissingKillCountDrop());
@@ -2025,35 +2041,67 @@ public class LogItemInfo {
             new DeterministicDrop());
     public static LogItemInfo INQUISITORS_GREAT_HELM_24419 = new LogItemInfo("Inquisitor's great helm", 24419,
             new PoissonBinomialDrop(ImmutableList.of(
+                    // pre-buff drop rate
                     new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 600),
-                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 1000)
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 420),
+                    // pre-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 1000),
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 700)
             ))
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_TEAM_SIZE_KEY)
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_REWARDS_FRACTION_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.NIGHTMARE_KC_PRE_BUFF_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY)
     );
     public static LogItemInfo INQUISITORS_HAUBERK_24420 = new LogItemInfo("Inquisitor's hauberk", 24420,
             new PoissonBinomialDrop(ImmutableList.of(
+                    // pre-buff drop rate
                     new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 600),
-                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 1000)
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 420),
+                    // pre-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 1000),
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 700)
             ))
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_TEAM_SIZE_KEY)
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_REWARDS_FRACTION_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.NIGHTMARE_KC_PRE_BUFF_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY)
     );
     public static LogItemInfo INQUISITORS_MACE_24417 = new LogItemInfo("Inquisitor's mace", 24417,
             new PoissonBinomialDrop(ImmutableList.of(
+                    // pre-buff drop rate
                     new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 1200),
-                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 2000)
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 750),
+                    // pre-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 2000),
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 1250)
             ))
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_TEAM_SIZE_KEY)
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_REWARDS_FRACTION_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.NIGHTMARE_KC_PRE_BUFF_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY)
     );
     public static LogItemInfo INQUISITORS_PLATESKIRT_24421 = new LogItemInfo("Inquisitor's plateskirt", 24421,
             new PoissonBinomialDrop(ImmutableList.of(
+                    // pre-buff drop rate
                     new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 600),
-                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 1000)
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 420),
+                    // pre-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 1000),
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 700)
             ))
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_TEAM_SIZE_KEY)
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_REWARDS_FRACTION_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.NIGHTMARE_KC_PRE_BUFF_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY)
     );
     // Note: This drop rate assumes you own all essence pouches or a colossal pouch.
     public static LogItemInfo INTRICATE_POUCH_26908 = new LogItemInfo("Intricate pouch", 26908,
@@ -2537,11 +2585,19 @@ public class LogItemInfo {
     );
     public static LogItemInfo NIGHTMARE_STAFF_24422 = new LogItemInfo("Nightmare staff", 24422,
             new PoissonBinomialDrop(ImmutableList.of(
+                    // pre-buff drop rate
                     new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 400),
-                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 667)
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 300),
+                    // pre-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 667),
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 533)
             ))
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_TEAM_SIZE_KEY)
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_REWARDS_FRACTION_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.NIGHTMARE_KC_PRE_BUFF_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY)
     );
     public static LogItemInfo NIHIL_HORN_26372 = new LogItemInfo("Nihil horn", 26372,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.NEX_KILLS, 1.0 / 258))
@@ -3182,7 +3238,7 @@ public class LogItemInfo {
     public static LogItemInfo SLEEPING_CAP_10398 = new LogItemInfo("Sleeping cap", 10398,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 1404, 3)));
     public static LogItemInfo SLEPEY_TABLET_25837 = new LogItemInfo("Slepey tablet", 25837,
-            new DeterministicDrop());
+            new UnimplementedDrop());
     public static LogItemInfo SMITHING_CATALYST_27017 = new LogItemInfo("Smithing catalyst", 27017,
             new DeterministicDrop());
     public static LogItemInfo SMITHS_BOOTS_27027 = new LogItemInfo("Smiths boots", 27027,
@@ -3558,11 +3614,19 @@ public class LogItemInfo {
             new DeterministicDrop());
     public static LogItemInfo VOLATILE_ORB_24514 = new LogItemInfo("Volatile orb", 24514,
             new PoissonBinomialDrop(ImmutableList.of(
+                    // pre-buff drop rate
                     new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 1800),
-                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 3000)
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.NIGHTMARE_KILLS, 1.0 / 960),
+                    // pre-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 3000),
+                    // post-buff drop rate
+                    new RollInfo(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS, 1.0 / 1600)
             ))
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_TEAM_SIZE_KEY)
                     .withConfigOption(CollectionLogLuckConfig.AVG_NIGHTMARE_REWARDS_FRACTION_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.NIGHTMARE_KC_PRE_BUFF_KEY)
+                    .withConfigOption(CollectionLogLuckConfig.PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY)
     );
     public static LogItemInfo VOLCANIC_MINE_TELEPORT_21541 = new LogItemInfo("Volcanic mine teleport", 21541,
             new DeterministicDrop());

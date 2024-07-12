@@ -158,6 +158,30 @@ public class PoissonBinomialDrop extends AbstractDrop {
             else if (rollInfoIndex == 1) {
                 return numRolls - Math.max(0, Math.min(numRolls, config.kbdKcPreDPickBuff()));
             }
+        } else if (
+                rollInfo.getDropSource().equals(LogItemSourceInfo.NIGHTMARE_KILLS)
+                        && configOptions.contains(CollectionLogLuckConfig.NIGHTMARE_KC_PRE_BUFF_KEY)) {
+            // Nightmare kc pre-buff
+            if (rollInfoIndex == 0) {
+                // The player cannot have more pre-buff KC than they have KC
+                return Math.max(0, Math.min(numRolls, config.nightmareKcPreBuff()));
+            }
+            // Nightmare kc post-buff
+            else if (rollInfoIndex == 1) {
+                return numRolls - Math.max(0, Math.min(numRolls, config.nightmareKcPreBuff()));
+            }
+        } else if (
+                rollInfo.getDropSource().equals(LogItemSourceInfo.PHOSANIS_NIGHTMARE_KILLS)
+                        && configOptions.contains(CollectionLogLuckConfig.PHOSANIS_NIGHTMARE_KC_PRE_BUFF_KEY)) {
+            // Phosani's Nightmare kc pre-buff.
+            if (rollInfoIndex == 2) {
+                // The player cannot have more pre-buff KC than they have KC
+                return Math.max(0, Math.min(numRolls, config.phosanisNightmareKcPreBuff()));
+            }
+            // Phosani's Nightmare kc post-buff
+            else if (rollInfoIndex == 3) {
+                return numRolls - Math.max(0, Math.min(numRolls, config.phosanisNightmareKcPreBuff()));
+            }
         }
 
         return numRolls;
