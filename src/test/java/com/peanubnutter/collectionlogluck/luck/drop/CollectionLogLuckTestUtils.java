@@ -9,12 +9,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CollectionLogLuckTestUtils {
-    public static CollectionLog getMockCollectionLogWithKcs(Map<String, Integer> sourceToKcMap) {
+
+    public static CollectionLog getMockCollectionLogWithKcsAndItems(
+            Map<String, Integer> sourceToKcMap,
+            List<CollectionLogItem> collectionLogItems) {
         List<CollectionLogKillCount> killCounts = sourceToKcMap.entrySet().stream()
                 .map(entry -> new CollectionLogKillCount(entry.getKey(), entry.getValue(), 0))
                 .collect(Collectors.toList());
 
-        List<CollectionLogItem> pageItems = Collections.emptyList();
+        List<CollectionLogItem> pageItems = collectionLogItems;
 
         CollectionLogPage mockPage = new CollectionLogPage("some page", pageItems, killCounts, true);
         Map<String, CollectionLogPage> pages = ImmutableMap.of(mockPage.getName(), mockPage);
@@ -25,7 +28,12 @@ public class CollectionLogLuckTestUtils {
         return new CollectionLog("someusername", 0, 0, 0, 0, tabs);
     }
 
+    public static CollectionLog getMockCollectionLogWithKcs(Map<String, Integer> sourceToKcMap) {
+        return getMockCollectionLogWithKcsAndItems(sourceToKcMap, Collections.emptyList());
+    }
+
     public static CollectionLog getMockCollectionLogWithKc(String itemSourceName, int kc) {
         return getMockCollectionLogWithKcs(ImmutableMap.of(itemSourceName, kc));
     }
+
 }
