@@ -135,7 +135,7 @@ public abstract class AbstractDrop implements DropLuck {
         return rollsPerKc;
     }
 
-    protected double getDropChance(RollInfo rollInfo, CollectionLogLuckConfig config) {
+    protected double getDropChance(RollInfo rollInfo, CollectionLog collectionLog, CollectionLogLuckConfig config) {
         double dropChance = rollInfo.getDropChancePerRoll();
 
         // Check both the drop source as well as the item name or modifier name, since checking the drop source is

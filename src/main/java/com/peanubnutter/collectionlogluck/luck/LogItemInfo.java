@@ -46,7 +46,6 @@ public class LogItemInfo {
 
         Remaining items to support:
             Misc:
-                Bludgeon
                 Dry-only drops (single drop tablets, etc.)
     */
 
@@ -237,7 +236,7 @@ public class LogItemInfo {
     public static LogItemInfo ANCIENT_EMBLEM_21807 = new LogItemInfo("Ancient emblem", 21807,
             new MissingKillCountDrop());
     public static LogItemInfo ANCIENT_ESSENCE_27616 = new LogItemInfo("Ancient essence", 27616,
-            new PoissonBinomialStackDrop());
+            new CappedCollectionLogTrackingDrop(65535));
     public static LogItemInfo ANCIENT_FULL_HELM_12466 = new LogItemInfo("Ancient full helm", 12466,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 1625, 5)));
     public static LogItemInfo ANCIENT_GLOBE_25686 = new LogItemInfo("Ancient globe", 25686,
@@ -785,11 +784,23 @@ public class LogItemInfo {
     public static LogItemInfo BLOOD_SHARD_24777 = new LogItemInfo("Blood shard", 24777,
             new MissingKillCountDrop());
     public static LogItemInfo BLUDGEON_AXON_13276 = new LogItemInfo("Bludgeon axon", 13276,
-            new UnimplementedDrop());
+            new DupeProtectedSetBinomialDrop(
+                    // unsired chance, with 1/3rd of the bludgeon drop table rate.
+                    new RollInfo(LogItemSourceInfo.ABYSSAL_SIRE_KILLS, 1.0 / 100.0 * 62.0 / 128.0 / 3.0),
+                    ImmutableList.of(13276, 13275, 13274)
+            ));
     public static LogItemInfo BLUDGEON_CLAW_13275 = new LogItemInfo("Bludgeon claw", 13275,
-            new UnimplementedDrop());
+            new DupeProtectedSetBinomialDrop(
+                    // unsired chance, with 1/3rd of the bludgeon drop table rate.
+                    new RollInfo(LogItemSourceInfo.ABYSSAL_SIRE_KILLS, 1.0 / 100.0 * 62.0 / 128.0 / 3.0),
+                    ImmutableList.of(13276, 13275, 13274)
+            ));
     public static LogItemInfo BLUDGEON_SPINE_13274 = new LogItemInfo("Bludgeon spine", 13274,
-            new UnimplementedDrop());
+            new DupeProtectedSetBinomialDrop(
+                    // unsired chance, with 1/3rd of the bludgeon drop table rate.
+                    new RollInfo(LogItemSourceInfo.ABYSSAL_SIRE_KILLS, 1.0 / 100.0 * 62.0 / 128.0 / 3.0),
+                    ImmutableList.of(13276, 13275, 13274)
+            ));
     public static LogItemInfo BLUE_BERET_2633 = new LogItemInfo("Blue beret", 2633,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 1404, 3)));
     public static LogItemInfo BLUE_BOATER_7325 = new LogItemInfo("Blue boater", 7325,
@@ -916,7 +927,11 @@ public class LogItemInfo {
     public static LogItemInfo BROWN_TRICORN_HAT_8962 = new LogItemInfo("Brown tricorn hat", 8962,
             new DeterministicDrop());
     public static LogItemInfo BRUMA_TORCH_20720 = new LogItemInfo("Bruma torch", 20720,
-            new UnimplementedDrop());
+            // Note: This ignores the mechanic where torstol seeds are dropped instead if the player has > 3 torches.
+            // Users will probably understand why their luck is lower than expected if they've purposely kept 3+...
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.WINTERTODT_KILLS, 1.0 / 151.2))
+                    .withConfigOption(CollectionLogLuckConfig.NUM_ROLLS_PER_WINTERTODT_CRATE_KEY)
+    );
     public static LogItemInfo BRYOPHYTAS_ESSENCE_22372 = new LogItemInfo("Bryophyta's essence", 22372,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.BRYOPHYTA_KILLS, 1.0 / 118)));
     public static LogItemInfo BUCKET_HELM_19991 = new LogItemInfo("Bucket helm", 19991,
@@ -924,7 +939,7 @@ public class LogItemInfo {
     public static LogItemInfo BUCKET_HELM_G_20059 = new LogItemInfo("Bucket helm (g)", 20059,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MASTER_CLUES_COMPLETED, 1.0 / 13616, 6)));
     public static LogItemInfo BURNT_PAGE_20718 = new LogItemInfo("Burnt page", 20718,
-            new UnimplementedDrop());
+            new CappedCollectionLogTrackingDrop(250));
     public static LogItemInfo BUTCH_28248 = new LogItemInfo("Butch", 28248,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.VARDORVIS_KILLS, 1.0 / 3000)));
     public static LogItemInfo CABBAGE_ROUND_SHIELD_20272 = new LogItemInfo("Cabbage round shield", 20272,
@@ -1745,6 +1760,7 @@ public class LogItemInfo {
             new MissingKillCountDrop());
     public static LogItemInfo GRANITE_CLAMP_12849 = new LogItemInfo("Granite clamp", 12849,
             new DeterministicDrop());
+    // Capped at 65535
     public static LogItemInfo GRANITE_DUST_21726 = new LogItemInfo("Granite dust", 21726,
             new BinomialUniformSumDrop(
                     new RollInfo(LogItemSourceInfo.GROTESQUE_GUARDIAN_KILLS, 1),
@@ -2481,8 +2497,10 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 1133, 4)));
     public static LogItemInfo MITHRIL_PLATESKIRT_T_12295 = new LogItemInfo("Mithril plateskirt (t)", 12295,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.MEDIUM_CLUES_COMPLETED, 1.0 / 1133, 4)));
+    // Capped at 250
     public static LogItemInfo MOLE_CLAW_7416 = new LogItemInfo("Mole claw", 7416,
             new DeterministicDrop());
+    // Capped at 250
     public static LogItemInfo MOLE_SKIN_7418 = new LogItemInfo("Mole skin", 7418,
             new BinomialUniformSumDrop(
                     new RollInfo(LogItemSourceInfo.GIANT_MOLE_KILLS, 1),
@@ -2795,13 +2813,29 @@ public class LogItemInfo {
     public static LogItemInfo PURPLE_TRICORN_HAT_8964 = new LogItemInfo("Purple tricorn hat", 8964,
             new DeterministicDrop());
     public static LogItemInfo PYROMANCER_BOOTS_20710 = new LogItemInfo("Pyromancer boots", 20710,
-            new UnimplementedDrop());
+            new DupeProtectedSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.WINTERTODT_KILLS, 1.0 / 152.2 / 4.0),
+                    ImmutableList.of(20710, 20704, 20708, 20706)
+            ).withConfigOption(CollectionLogLuckConfig.NUM_ROLLS_PER_WINTERTODT_CRATE_KEY)
+    );
     public static LogItemInfo PYROMANCER_GARB_20704 = new LogItemInfo("Pyromancer garb", 20704,
-            new UnimplementedDrop());
+            new DupeProtectedSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.WINTERTODT_KILLS, 1.0 / 152.2 / 4.0),
+                    ImmutableList.of(20710, 20704, 20708, 20706)
+            ).withConfigOption(CollectionLogLuckConfig.NUM_ROLLS_PER_WINTERTODT_CRATE_KEY)
+    );
     public static LogItemInfo PYROMANCER_HOOD_20708 = new LogItemInfo("Pyromancer hood", 20708,
-            new UnimplementedDrop());
+            new DupeProtectedSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.WINTERTODT_KILLS, 1.0 / 152.2 / 4.0),
+                    ImmutableList.of(20710, 20704, 20708, 20706)
+            ).withConfigOption(CollectionLogLuckConfig.NUM_ROLLS_PER_WINTERTODT_CRATE_KEY)
+    );
     public static LogItemInfo PYROMANCER_ROBE_20706 = new LogItemInfo("Pyromancer robe", 20706,
-            new UnimplementedDrop());
+            new DupeProtectedSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.WINTERTODT_KILLS, 1.0 / 152.2 / 4.0),
+                    ImmutableList.of(20710, 20704, 20708, 20706)
+            ).withConfigOption(CollectionLogLuckConfig.NUM_ROLLS_PER_WINTERTODT_CRATE_KEY)
+    );
     public static LogItemInfo RAIN_BOW_23357 = new LogItemInfo("Rain bow", 23357,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.EASY_CLUES_COMPLETED, 1.0 / 1404, 3)));
     public static LogItemInfo RANGERS_TIGHTS_23249 = new LogItemInfo("Rangers' tights", 23249,
@@ -3389,7 +3423,7 @@ public class LogItemInfo {
     public static LogItemInfo TOKTZ_XIL_UL_6522 = new LogItemInfo("Toktz-xil-ul", 6522,
             new MissingKillCountDrop());
     public static LogItemInfo TOME_OF_FIRE_EMPTY_20716 = new LogItemInfo("Tome of fire (empty)", 20716,
-            new BinomialDrop(new RollInfo(LogItemSourceInfo.WINTERTODT_KILLS, 1.0 / 1000))
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.WINTERTODT_KILLS, 1.0 / 1000.3))
                     .withConfigOption(CollectionLogLuckConfig.NUM_ROLLS_PER_WINTERTODT_CRATE_KEY)
     );
     public static LogItemInfo TOME_OF_WATER_EMPTY_25576 = new LogItemInfo("Tome of water (empty)", 25576,
@@ -3639,7 +3673,11 @@ public class LogItemInfo {
     public static LogItemInfo WARD_UPGRADE_KIT_12802 = new LogItemInfo("Ward upgrade kit", 12802,
             new DeterministicDrop());
     public static LogItemInfo WARM_GLOVES_20712 = new LogItemInfo("Warm gloves", 20712,
-            new UnimplementedDrop());
+            // Note: This ignores the mechanic where magic seeds are dropped instead if the player has > 3 warm gloves.
+            // Users will probably understand why their luck is lower than expected if they've purposely kept 3+...
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.WINTERTODT_KILLS, 1.0 / 150.2))
+                    .withConfigOption(CollectionLogLuckConfig.NUM_ROLLS_PER_WINTERTODT_CRATE_KEY)
+    );
     public static LogItemInfo WARRIOR_RING_6735 = new LogItemInfo("Warrior ring", 6735,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.DAGANNOTH_REX_KILLS, 1.0 / 128)));
     public static LogItemInfo WAR_BLESSING_20232 = new LogItemInfo("War blessing", 20232,
@@ -3818,7 +3856,7 @@ public class LogItemInfo {
     public static LogItemInfo ZOMBIE_TROUSERS_7593 = new LogItemInfo("Zombie trousers", 7593,
             new MissingKillCountDrop());
     public static LogItemInfo ZULRAHS_SCALES_12934 = new LogItemInfo("Zulrah's scales", 12934,
-            new PoissonBinomialStackDrop());
+            new CappedCollectionLogTrackingDrop(65535));
     public static LogItemInfo ZUL_ANDRA_TELEPORT_12938 = new LogItemInfo("Zul-andra teleport", 12938,
             new FixedStackDrop(new RollInfo(LogItemSourceInfo.ZULRAH_KILLS, 1.0 / 16.53, 2), 4));
     public static LogItemInfo THIRD_AGE_AMULET_10344 = new LogItemInfo("3rd age amulet", 10344,
@@ -4021,33 +4059,69 @@ public class LogItemInfo {
     public static LogItemInfo TONALZTICS_OF_RALOS_UNCHARGED_28919 = new LogItemInfo("Tonalztics of ralos (uncharged)", 28919,
             new MissingKillCountDrop());
     public static LogItemInfo SUNFIRE_SPLINTERS_28924 = new LogItemInfo("Sunfire splinters", 28924,
-            new MissingKillCountDrop());
+            new CappedCollectionLogTrackingDrop(250));
     public static LogItemInfo ECLIPSE_MOON_CHESTPLATE_29004 = new LogItemInfo("Eclipse moon chestplate", 29004,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29004, 29007, 29010, 29000)
+            ));
     public static LogItemInfo ECLIPSE_MOON_TASSETS_29007 = new LogItemInfo("Eclipse moon tassets", 29007,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29004, 29007, 29010, 29000)
+            ));
     public static LogItemInfo ECLIPSE_MOON_HELM_29010 = new LogItemInfo("Eclipse moon helm", 29010,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29004, 29007, 29010, 29000)
+            ));
     public static LogItemInfo ECLIPSE_ATLATL_29000 = new LogItemInfo("Eclipse atlatl", 29000,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29004, 29007, 29010, 29000)
+            ));
     public static LogItemInfo BLUE_MOON_CHESTPLATE_29013 = new LogItemInfo("Blue moon chestplate", 29013,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29013, 29016, 29019, 28988)
+            ));
     public static LogItemInfo BLUE_MOON_TASSETS_29016 = new LogItemInfo("Blue moon tassets", 29016,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29013, 29016, 29019, 28988)
+            ));
     public static LogItemInfo BLUE_MOON_HELM_29019 = new LogItemInfo("Blue moon helm", 29019,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29013, 29016, 29019, 28988)
+            ));
     public static LogItemInfo BLUE_MOON_SPEAR_28988 = new LogItemInfo("Blue moon spear", 28988,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29013, 29016, 29019, 28988)
+            ));
     public static LogItemInfo BLOOD_MOON_CHESTPLATE_29022 = new LogItemInfo("Blood moon chestplate", 29022,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29022, 29025, 29028, 28997)
+            ));
     public static LogItemInfo BLOOD_MOON_TASSETS_29025 = new LogItemInfo("Blood moon tassets", 29025,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29022, 29025, 29028, 28997)
+            ));
     public static LogItemInfo BLOOD_MOON_HELM_29028 = new LogItemInfo("Blood moon helm", 29028,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29022, 29025, 29028, 28997)
+            ));
     public static LogItemInfo DUAL_MACUAHUITL_28997 = new LogItemInfo("Dual macuahuitl", 28997,
-            new UnimplementedDrop());
+            new DupeProtectedFirstSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.LUNAR_CHESTS_OPENED, 1.0 / 224),
+                    ImmutableList.of(29022, 29025, 29028, 28997)
+            ));
     public static LogItemInfo ATLATL_DART_28991 = new LogItemInfo("Atlatl dart", 28991,
-            new UnimplementedDrop());
+            new CappedCollectionLogTrackingDrop(250));
     public static LogItemInfo QUETZIN_28962 = new LogItemInfo("Quetzin", 28962,
             new MissingKillCountDrop());
     public static LogItemInfo HUNTSMANS_KIT_29309 = new LogItemInfo("Huntsman's kit", 29309,

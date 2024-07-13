@@ -18,6 +18,6 @@ public class FixedStackDrop extends BinomialDrop {
 
     @Override
     protected int getNumSuccesses(CollectionLogItem item, CollectionLog collectionLog, CollectionLogLuckConfig config) {
-        return item.getQuantity() / stackSize;
+        return (int) Math.ceil((double) item.getQuantity() / stackSize);
     }
 }
