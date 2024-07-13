@@ -71,6 +71,7 @@ public class CollectionLogLuckPlugin extends Plugin {
     private final String pluginMessage = "<colHIGHLIGHT>Collection Log Luck " + pluginVersion + ":<br>" +
             "<colHIGHLIGHT>* Fixed shared clue items. Visual tweaks.<br>" +
             "<colHIGHLIGHT>* Support Tormented Demon drops and Nightmare buff settings<br>" +
+            "<colHIGHLIGHT>* Support abyssal bludgeon, Moons of Peril, Wintertodt<br>" +
             "<colHIGHLIGHT>* This update message can be hidden in settings";
 
     private Map<Integer, Integer> loadedCollectionLogIcons;
