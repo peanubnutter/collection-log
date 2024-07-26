@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-// All 1523 collection log items as of 7/11/2024 and a mapping to their item IDs and drop mechanics / probabilities.
+// All 1524 collection log items as of 7/25/2024 and a mapping to their item IDs and drop mechanics / probabilities.
 public class LogItemInfo {
 
     // case-insensitive map, just in case
@@ -248,7 +248,8 @@ public class LogItemInfo {
                     .withConfigOption(CollectionLogLuckConfig.AVG_NEX_REWARDS_FRACTION_KEY)
     );
     public static LogItemInfo ANCIENT_ICON_27627 = new LogItemInfo("Ancient icon", 27627,
-            new BinomialDrop(new RollInfo(LogItemSourceInfo.PHANTOM_MUSPAH_KILLS, 1.0 / 50)));
+            // includes chance from frozen cache(s)
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.PHANTOM_MUSPAH_KILLS, 1.0 / 50 + 1.0 / 24.8 / 250)));
     public static LogItemInfo ANCIENT_KITESHIELD_12468 = new LogItemInfo("Ancient kiteshield", 12468,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.HARD_CLUES_COMPLETED, 1.0 / 1625, 5)));
     public static LogItemInfo ANCIENT_LEDGER_25688 = new LogItemInfo("Ancient ledger", 25688,
@@ -1512,7 +1513,10 @@ public class LogItemInfo {
     public static LogItemInfo FROG_TOKEN_6183 = new LogItemInfo("Frog token", 6183,
             new MissingKillCountDrop());
     public static LogItemInfo FROZEN_CACHE_27622 = new LogItemInfo("Frozen cache", 27622,
-            new BinomialDrop(new RollInfo(LogItemSourceInfo.PHANTOM_MUSPAH_KILLS, 1.0 / 25)));
+            // Chance of receiving a frozen cache, or a frozen cache inside a frozen cache, and so on.
+            // This infinite series converges to 1/24.8. This assumes frozen caches received inside frozen caches
+            // are counted in the collection log.
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.PHANTOM_MUSPAH_KILLS, 1.0 / 24.8)));
     public static LogItemInfo FROZEN_TABLET_28333 = new LogItemInfo("Frozen tablet", 28333,
             new DeterministicDrop());
     public static LogItemInfo FROZEN_WHIP_MIX_12769 = new LogItemInfo("Frozen whip mix", 12769,
@@ -3554,7 +3558,8 @@ public class LogItemInfo {
     public static LogItemInfo URIS_HAT_23255 = new LogItemInfo("Uri's hat", 23255,
             new BinomialDrop(new RollInfo(LogItemSourceInfo.ELITE_CLUES_COMPLETED, 1.0 / 1275, 5)));
     public static LogItemInfo VENATOR_SHARD_27614 = new LogItemInfo("Venator shard", 27614,
-            new BinomialDrop(new RollInfo(LogItemSourceInfo.PHANTOM_MUSPAH_KILLS, 1.0 / 100)));
+            // includes chance from frozen cache(s)
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.PHANTOM_MUSPAH_KILLS, 1.0 / 100 + 1.0 / 24.8 / 500)));
     public static LogItemInfo VENATOR_VESTIGE_28283 = new LogItemInfo("Venator vestige", 28283,
             new HiddenShardDrop(new RollInfo(LogItemSourceInfo.LEVIATHAN_KILLS, 1.0 / 96.0 * 3.0 / 8.0), 3));
     public static LogItemInfo VENENATIS_SPIDERLING_13177 = new LogItemInfo("Venenatis spiderling", 13177,
@@ -4141,9 +4146,13 @@ public class LogItemInfo {
     public static LogItemInfo BRIMHAVEN_VOUCHER_29482 = new LogItemInfo("Brimhaven voucher", 29482,
             new DeterministicDrop());
     public static LogItemInfo TORMENTED_SYNAPSE_29580 = new LogItemInfo("Tormented synapse", 29580,
-            new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 499)));
-    public static LogItemInfo BONE_CLAW_29574 = new LogItemInfo("Bone claw", 29574,
-            new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 625)));
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 500)));
+    public static LogItemInfo BURNING_CLAW_29574 = new LogItemInfo("Burning claw", 29574,
+            // Rolls after tormented synapse
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 500.0 * 499.0 / 500.0)));
+    public static LogItemInfo GUTHIXIAN_TEMPLE_TELEPORT_29684 = new LogItemInfo("Guthixian temple teleport", 29684,
+            new FixedStackDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 12), 2));
+
 
     private final String itemName;
     private final int itemId;
