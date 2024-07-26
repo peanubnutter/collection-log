@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-// All 1523 collection log items as of 7/11/2024 and a mapping to their item IDs and drop mechanics / probabilities.
+// All 1524 collection log items as of 7/25/2024 and a mapping to their item IDs and drop mechanics / probabilities.
 public class LogItemInfo {
 
     // case-insensitive map, just in case
@@ -4146,9 +4146,13 @@ public class LogItemInfo {
     public static LogItemInfo BRIMHAVEN_VOUCHER_29482 = new LogItemInfo("Brimhaven voucher", 29482,
             new DeterministicDrop());
     public static LogItemInfo TORMENTED_SYNAPSE_29580 = new LogItemInfo("Tormented synapse", 29580,
-            new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 499)));
-    public static LogItemInfo BONE_CLAW_29574 = new LogItemInfo("Bone claw", 29574,
-            new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 625)));
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 500)));
+    public static LogItemInfo BURNING_CLAW_29574 = new LogItemInfo("Burning claw", 29574,
+            // Rolls after tormented synapse
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 500.0 * 499.0 / 500.0)));
+    public static LogItemInfo GUTHIXIAN_TEMPLE_TELEPORT_29684 = new LogItemInfo("Guthixian temple teleport", 29684,
+            new FixedStackDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 12), 2));
+
 
     private final String itemName;
     private final int itemId;
