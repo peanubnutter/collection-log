@@ -30,6 +30,8 @@ public interface CollectionLogLuckConfig extends Config
 	String AVG_ZALCANO_POINTS_KEY = "avg_zalcano_points";
 	String NUM_FIRE_CAPES_SACRIFICED_KEY = "num_fire_capes_sacrificed";
 	String NUM_INFERNAL_CAPES_SACRIFICED_KEY = "num_infernal_capes_sacrificed";
+	String NUM_DIZANAS_QUIVERS_SACRIFICED_KEY = "num_dizanas_quivers_sacrificed";
+	String NUM_ARAXXOR_DESTROYED_KEY = "num_araxxor_destroyed";
 	String AVG_CALLISTO_REWARDS_FRACTION_KEY = "avg_callisto_rewards_fraction";
 	String AVG_VENENATIS_REWARDS_FRACTION_KEY = "avg_venenatis_rewards_fraction";
 	String AVG_VETION_REWARDS_FRACTION_KEY = "avg_vetion_rewards_fraction";
@@ -394,13 +396,35 @@ public interface CollectionLogLuckConfig extends Config
 		return 0;
 	}
 
+	@ConfigItem(
+			keyName = NUM_DIZANAS_QUIVERS_SACRIFICED_KEY,
+			name = "# Dizana's Quivers sacrificed",
+			description = "The number of Dizana's Quivers sacrificed for a chance at Smol Heredit.",
+			position = 42,
+			section = luckSection
+	)
+	default int numDizanasQuiversSacrificed() {
+		return 0;
+	}
+
+	@ConfigItem(
+			keyName = NUM_ARAXXOR_DESTROYED_KEY,
+			name = "# Araxxor destroyed",
+			description = "The number of Araxxor corpses destroyed for a chance at Nid.",
+			position = 43,
+			section = luckSection
+	)
+	default int numAraxxorDestroyed() {
+		return 0;
+	}
+
 	// Purchasing Abyssal Lanterns prevents calculating how many the player has received through the Rewards Guardian.
 	// The calculation can be corrected if the player inputs the number purchased from the shop.
 	@ConfigItem(
 			keyName = NUM_ABYSSAL_LANTERNS_PURCHASED_KEY,
 			name = "# Abyssal Lanterns bought",
 			description = "The number of Abyssal Lanterns you bought from the Guardians of the Rift shop.",
-			position = 42,
+			position = 45,
 			section = luckSection
 	)
 	default int numAbyssalLanternsPurchased()
@@ -414,7 +438,7 @@ public interface CollectionLogLuckConfig extends Config
 			keyName = NUM_CRYSTAL_WEAPON_SEEDS_PURCHASED_KEY,
 			name = "# Crystal weapon seeds bought",
 			description = "The number of crystal weapon seeds you bought from the Last Man Standing shop.",
-			position = 43,
+			position = 46,
 			section = luckSection
 	)
 	default int numCrystalWeaponSeedsPurchased()

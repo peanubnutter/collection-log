@@ -67,12 +67,12 @@ public class CollectionLogLuckPlugin extends Plugin {
     private static final Pattern COLLECTION_LOG_LUCK_COMMAND_PATTERN = Pattern.compile("!luck\\s*(.+)\\s*", Pattern.CASE_INSENSITIVE);
     private static final String COLLECTION_LOG_LUCK_CONFIG_GROUP = "collectionlogluck";
 
-    private final String pluginVersion = "v1.1.0";
+    // Make sure to update this version to show the plugin message below.
+    private final String pluginVersion = "v1.1.1";
     private final String pluginMessage = "<colHIGHLIGHT>Collection Log Luck " + pluginVersion + ":<br>" +
-            "<colHIGHLIGHT>* Fixed shared clue items. Visual tweaks.<br>" +
-            "<colHIGHLIGHT>* Support Tormented Demon drops and Nightmare buff settings<br>" +
-            "<colHIGHLIGHT>* Support abyssal bludgeon, Moons of Peril, Wintertodt<br>" +
-            "<colHIGHLIGHT>* This update message can be hidden in settings";
+            "<colHIGHLIGHT>* Support Araxxor.<br>" +
+            "<colHIGHLIGHT>* Support Smol Heredit.<br>" +
+            "<colHIGHLIGHT>* Added config options for sacrificing Dizana's Quivers and Araxxor corpses.<br>";
 
     private Map<Integer, Integer> loadedCollectionLogIcons;
 

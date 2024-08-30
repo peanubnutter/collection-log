@@ -6,6 +6,7 @@ public enum LogItemSourceInfo {
     // Currently, only item sources with KCs in the collection log are listed
     ABYSSAL_SIRE_KILLS("Abyssal Sire kills"),
     ALCHEMICAL_HYDRA_KILLS("Alchemical Hydra kills"),
+    ARAXXOR_KILLS("Araxxor kills"),
     ARTIO_KILLS("Artio kills"),
     BARROWS_CHESTS_OPENED("Barrows Chests opened"),
     BEGINNER_CLUES_COMPLETED("Beginner clues completed"),

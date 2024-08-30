@@ -93,6 +93,16 @@ public abstract class AbstractDrop implements DropLuck {
             if (rollInfo.getDropSource().equals(LogItemSourceInfo.BARROWS_CHESTS_OPENED)
                 && configOptions.contains(CollectionLogLuckConfig.NUM_INVALID_BARROWS_KC_KEY)) {
                 kc -= Math.max(0, Math.min(kc, config.numInvalidBarrowsKc()));
+            } else if (rollInfo.getDropSource().equals(LogItemSourceInfo.ARAXXOR_KILLS)
+                && configOptions.contains(LogItemInfo.NID_29836.getItemName())) {
+                // can't sacrifice negative amounts, and can't destroy more times than the number of KC
+                kc += Math.max(0, Math.min(kc, config.numAraxxorDestroyed()));
+            } else if (rollInfo.getDropSource().equals(LogItemSourceInfo.ARAXXOR_KILLS)
+                    && configOptions.contains(CollectionLogLuckConfig.NUM_ARAXXOR_DESTROYED_KEY)) {
+                kc -= Math.max(0, Math.min(kc, config.numAraxxorDestroyed()));
+            } else if (rollInfo.getDropSource().equals(LogItemSourceInfo.SOL_HEREDIT_KILLS)
+                    && configOptions.contains(CollectionLogLuckConfig.NUM_DIZANAS_QUIVERS_SACRIFICED_KEY)) {
+                kc += Math.max(0, Math.min(kc, config.numDizanasQuiversSacrificed()));
             }
 
             numTrials += kc * rollsPerKc;

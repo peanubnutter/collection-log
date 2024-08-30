@@ -4050,7 +4050,8 @@ public class LogItemInfo {
     public static LogItemInfo ZOMBIE_AXE_28813 = new LogItemInfo("Broken zombie axe", 28813,
             new MissingKillCountDrop());
     public static LogItemInfo SMOL_HEREDIT_28960 = new LogItemInfo("Smol heredit", 28960,
-            new UnimplementedDrop());
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.SOL_HEREDIT_KILLS, 1.0 / 200))
+                    .withConfigOption(CollectionLogLuckConfig.NUM_DIZANAS_QUIVERS_SACRIFICED_KEY));
     public static LogItemInfo DIZANAS_QUIVER_UNCHARGED_28947 = new LogItemInfo("Dizana's quiver (uncharged)", 28947,
             new DeterministicDrop());
     public static LogItemInfo SUNFIRE_FANATIC_CUIRASS_28936 = new LogItemInfo("Sunfire fanatic cuirass", 28936,
@@ -4152,7 +4153,41 @@ public class LogItemInfo {
             new BinomialDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 500.0 * 499.0 / 500.0)));
     public static LogItemInfo GUTHIXIAN_TEMPLE_TELEPORT_29684 = new LogItemInfo("Guthixian temple teleport", 29684,
             new FixedStackDrop(new RollInfo(LogItemSourceInfo.TORMENTED_DEMON_KILLS, 1.0 / 12), 2));
-
+    public static LogItemInfo NID_29836 = new LogItemInfo("Nid",29836,
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.ARAXXOR_KILLS, 1.0 / 3000))
+                    .withConfigOption("Nid"));
+    public static LogItemInfo ARAXYTE_VENOM_SACK_29784 = new LogItemInfo("Araxyte venom sack",29784,
+            new MissingKillCountDrop());
+    public static LogItemInfo SPIDER_CAVE_TELEPORT_29782 = new LogItemInfo("Spider cave teleport",29782,
+            new FixedStackDrop(new RollInfo(LogItemSourceInfo.ARAXXOR_KILLS, 1.0 / 14.38), 3)
+                    .withConfigOption(CollectionLogLuckConfig.NUM_ARAXXOR_DESTROYED_KEY));
+    public static LogItemInfo ARAXYTE_FANG_29799 = new LogItemInfo("Araxyte fang",29799,
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.ARAXXOR_KILLS, 1.0 / 600))
+                    .withConfigOption(CollectionLogLuckConfig.NUM_ARAXXOR_DESTROYED_KEY));
+    public static LogItemInfo NOXIOUS_POINT_29790 = new LogItemInfo("Noxious point",29790,
+            new DupeProtectedSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.ARAXXOR_KILLS, 1.0 / 600),
+                    ImmutableList.of(29790, 29792, 29794)
+            ).withConfigOption(CollectionLogLuckConfig.NUM_ARAXXOR_DESTROYED_KEY));
+    public static LogItemInfo NOXIOUS_BLADE_29792 = new LogItemInfo("Noxious blade",29792,
+            new DupeProtectedSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.ARAXXOR_KILLS, 1.0 / 600),
+                    ImmutableList.of(29790, 29792, 29794)
+            ).withConfigOption(CollectionLogLuckConfig.NUM_ARAXXOR_DESTROYED_KEY));
+    public static LogItemInfo NOXIOUS_POMMEL_29794 = new LogItemInfo("Noxious pommel",29794,
+            new DupeProtectedSetBinomialDrop(
+                    new RollInfo(LogItemSourceInfo.ARAXXOR_KILLS, 1.0 / 600),
+                    ImmutableList.of(29790, 29792, 29794)
+            ).withConfigOption(CollectionLogLuckConfig.NUM_ARAXXOR_DESTROYED_KEY));
+    public static LogItemInfo ARAXYTE_HEAD_29788 = new LogItemInfo("Araxyte head",29788,
+            new MissingKillCountDrop());
+    public static LogItemInfo JAR_OF_VENOM_29786 = new LogItemInfo("Jar of venom",29786,
+            new BinomialDrop(new RollInfo(LogItemSourceInfo.ARAXXOR_KILLS, 1.0 / 1500))
+                    .withConfigOption(CollectionLogLuckConfig.NUM_ARAXXOR_DESTROYED_KEY));
+    public static LogItemInfo COAGULATED_VENOM_29781 = new LogItemInfo("Coagulated venom",29781,
+            new DeterministicDrop());
+    public static LogItemInfo ARANEA_BOOTS_29806 = new LogItemInfo("Aranea boots",29806,
+            new MissingKillCountDrop());
 
     private final String itemName;
     private final int itemId;
